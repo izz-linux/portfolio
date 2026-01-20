@@ -1,22 +1,53 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { getProfile } from "@/lib/profile";
 import { matchesExperience } from "@/lib/search";
 import SearchBar from "@/components/SearchBar";
 import Timeline from "@/components/Timeline";
 import Skills from "@/components/Skills";
 import Keywords from "@/components/Keywords";
+import ExperienceCard from "@/components/ExperienceCard";
 
 export default function Home() {
   const profile = useMemo(() => getProfile(), []);
   const [query, setQuery] = useState("");
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [focusKey, setFocusKey] = useState<string>(""); // changes to trigger open effect
+
+  const cardsSectionRef = useRef<HTMLDivElement | null>(null);
+  const cardRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   const filteredExperience = useMemo(() => {
-    // Sort newest first by startDate, then filter by query
     const sorted = [...profile.experience].sort((a, b) => (a.startDate < b.startDate ? 1 : -1));
     return sorted.filter((e) => matchesExperience(e, query));
   }, [profile.experience, query]);
+
+  // If search filter removes the selected item, clear selection
+  useEffect(() => {
+    if (selectedId && !filteredExperience.some((e) => e.id === selectedId)) {
+      setSelectedId(null);
+    }
+  }, [filteredExperience, selectedId]);
+
+  const onSelectFromTimeline = (id: string) => {
+    setSelectedId(id);
+    setFocusKey(String(Date.now())); // bump to force open in ExperienceCard
+
+    // First scroll to the cards section
+    cardsSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    // Then scroll/focus the specific card after a short delay
+    window.setTimeout(() => {
+      const el = cardRefs.current[id];
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        // focus the inner card div (ExperienceCard has tabIndex=-1)
+        const focusable = el.querySelector<HTMLElement>("[tabindex='-1']");
+        focusable?.focus();
+      }
+    }, 250);
+  };
 
   return (
     <main className="mx-auto max-w-5xl px-4 py-10">
@@ -29,7 +60,11 @@ export default function Home() {
         {profile.links?.length ? (
           <div className="flex flex-wrap gap-3 text-sm">
             {profile.links.map((l) => (
-              <a key={l.href} href={l.href} className="underline decoration-gray-300 underline-offset-4 hover:decoration-gray-500">
+              <a
+                key={l.href}
+                href={l.href}
+                className="underline decoration-gray-300 underline-offset-4 hover:decoration-gray-500"
+              >
                 {l.label}
               </a>
             ))}
@@ -50,16 +85,38 @@ export default function Home() {
       </header>
 
       <section className="mt-10 grid gap-10 md:grid-cols-[1.6fr_1fr]">
-        <div className="space-y-4">
-          <h2 className="text-sm font-semibold text-gray-900">Work Experience</h2>
-
+        <div className="space-y-6">
+          {/* Timeline picker */}
           {filteredExperience.length ? (
-            <Timeline items={filteredExperience} query={query} />
+            <Timeline items={filteredExperience} selectedId={selectedId} onSelect={onSelectFromTimeline} />
           ) : (
             <div className="rounded-md border border-gray-200 bg-white p-4 text-sm text-gray-700">
               No matches. Try a different search term.
             </div>
           )}
+
+          {/* Cards live below timeline */}
+          <div ref={cardsSectionRef} className="space-y-4">
+            <div className="text-sm font-semibold text-gray-900">Experience Details</div>
+
+            {filteredExperience.map((item, idx) => (
+              <div
+                key={item.id}
+                ref={(el) => {
+                  cardRefs.current[item.id] = el;
+                }}
+              >
+                <ExperienceCard
+  		  item={item}
+		  query={query}
+		  defaultOpen={idx === 0 && !selectedId}
+		  forceOpen={selectedId === item.id}
+		  focusKey={focusKey}
+		  selected={selectedId === item.id}
+		/>
+	      </div>
+            ))}
+          </div>
         </div>
 
         <aside className="space-y-8">
