@@ -1,0 +1,191 @@
+{
+  "name": "Izz Noland",
+  "headline": "Senior DevOps Engineer / Site Reliability Engineer",
+  "links": [
+    { "label": "Email", "href": "mailto:izz@linux.com" },
+    { "label": "LinkedIn", "href": "https://linkedin.com/in/izznoland/" }
+  ],
+  "summary": [
+    "Senior DevOps Engineer and Site Reliability Expert with 20 years of experience managing large-scale cloud infrastructure, Kubernetes platforms, and Infrastructure as Code.",
+    "Proven track record delivering measurable business impact including $100k+ monthly cost savings through automation, reliability engineering, and platform optimization across AWS and GCP."
+  ],
+  "experience": [
+    {
+      "id": "thescore",
+      "company": "theScore",
+      "title": "Senior DevOps Engineer, SRE Core",
+      "location": "Ontario, Canada (Remote)",
+      "startDate": "2024-05",
+      "endDate": "2025-11",
+      "summary": "Led infrastructure strategy and SRE practices for a large-scale gaming and sports betting platform supporting millions of concurrent users.",
+      "bullets": [
+        "Led infrastructure strategy for 100+ Kubernetes clusters across GKE and Anthos, supporting high-availability gaming platforms.",
+        "Delivered $100K+/month in cost savings through event-driven scaling, HPA implementation, and fleet-wide resource right-sizing.",
+        "Championed SRE practices as Data Vertical lead: prod-mirror environments, fault tolerance testing, and support workflows adopted across teams.",
+        "Served as Kubernetes SME and second-highest code contributor to ephemeral environment platform, mentoring engineers on Go, GitHub Actions, ArgoCD, and Helm.",
+        "Architected a Terraform-first modernization strategy, migrating from Terragrunt to Terraform Cloud while maintaining legacy systems.",
+        "Reduced deployment time from hours to minutes through CI/CD and deployment automation improvements."
+      ],
+      "skillsUsed": [
+        "GCP",
+        "AWS",
+        "Kubernetes",
+        "Terraform",
+        "Terraform Cloud",
+        "Anthos",
+        "ArgoCD",
+        "GitHub Actions",
+        "Helm",
+        "SRE",
+        "Cost Optimization",
+        "Observability"
+      ]
+    },
+    {
+      "id": "samcart",
+      "company": "Samcart",
+      "title": "Staff Site Reliability Engineer",
+      "location": "Austin, TX",
+      "startDate": "2023-03",
+      "endDate": "2024-02",
+      "summary": "Platform engineer focused on migrating container workloads and codifying infrastructure at scale.",
+      "bullets": [
+        "Primary contributor migrating containerized workloads from GKE to AWS EKS, reducing infrastructure costs by over 30%.",
+        "Built all infrastructure using a Terraform-first approach, ensuring every system was codified, documented, and reproducible.",
+        "Enabled platform reliability through standardized networking, IAM, and Kubernetes patterns."
+      ],
+      "skillsUsed": [
+        "AWS",
+        "EKS",
+        "Terraform",
+        "Kubernetes",
+        "Infrastructure as Code",
+        "Platform Engineering"
+      ]
+    },
+    {
+      "id": "pixability",
+      "company": "Pixability",
+      "title": "Senior DevOps Engineer",
+      "location": "Boston, MA",
+      "startDate": "2022-04",
+      "endDate": "2023-01",
+      "summary": "Platform engineer improving CI/CD and Kubernetes reliability on AWS.",
+      "bullets": [
+        "Built CI/CD pipelines using Jenkins, Terraform, and Docker for Amazon EKS.",
+        "Migrated Jenkins from EC2 to Kubernetes using Terraform, Helm, and Groovy for configuration as code.",
+        "Improved deployment reliability and repeatability through GitOps patterns."
+      ],
+      "skillsUsed": [
+        "AWS",
+        "EKS",
+        "Jenkins",
+        "Terraform",
+        "Helm",
+        "Docker",
+        "CI/CD"
+      ]
+    },
+    {
+      "id": "shipt",
+      "company": "Shipt",
+      "title": "Senior Site Reliability Engineer",
+      "location": "Birmingham, AL",
+      "startDate": "2021-06",
+      "endDate": "2022-04",
+      "summary": "SRE on the Observability team building internal tooling and migrating services to GCP.",
+      "bullets": [
+        "Built in-house observability tooling using Go, Python, YAML, and jsonnet.",
+        "Owned Specter and Lookout monitoring applications ensuring coverage of normal and edge cases.",
+        "Assisted migration of microservices from AWS to GCP, cutting infrastructure costs by over 20%."
+      ],
+      "skillsUsed": [
+        "GCP",
+        "Observability",
+        "Go",
+        "Python",
+        "Prometheus",
+        "Grafana",
+        "SRE"
+      ]
+    },
+    {
+      "id": "daxko",
+      "company": "Daxko",
+      "title": "Senior Site Reliability Engineer",
+      "location": "Birmingham, AL",
+      "startDate": "2018-11",
+      "endDate": "2021-06",
+      "summary": "Platform engineering leader building Kubernetes, Terraform, and CI/CD foundations.",
+      "bullets": [
+        "Co-founded the Platform Engineering Guild, leading monthly teachbacks on Git, CI/CD, Terraform, and Rancher.",
+        "Implemented ELK stack replacing New Relic API usage, reducing cost and improving maintainability.",
+        "Built Daxko’s first Kubernetes cluster using Rancher, fully managed via Terraform and GitLab pipelines.",
+        "Standardized multi-environment builds using Terraform + Chef, reducing environment creation time to 10 minutes.",
+        "Supported PCI, SOC1, and SOC2 compliance initiatives."
+      ],
+      "skillsUsed": [
+        "Terraform",
+        "Kubernetes",
+        "Rancher",
+        "ELK",
+        "GitLab CI",
+        "Chef",
+        "Compliance"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "group": "Cloud & Platform",
+      "items": ["AWS", "GCP", "Kubernetes", "EKS", "GKE", "Anthos", "Outpost", "vCluster"]
+    },
+    {
+      "group": "Infrastructure as Code",
+      "items": ["Terraform", "Terraform Cloud", "Terragrunt", "Ansible", "Chef", "Packer"]
+    },
+    {
+      "group": "CI/CD & GitOps",
+      "items": ["ArgoCD", "GitHub Actions", "Jenkins", "CircleCI", "GitLab CI", "Helm", "Kustomize"]
+    },
+    {
+      "group": "Observability",
+      "items": ["Datadog", "Prometheus", "Grafana", "ELK Stack", "Dynatrace", "New Relic"]
+    },
+    {
+      "group": "Programming & Automation",
+      "items": ["Go", "Python", "Bash", "Ruby", "Groovy"]
+    },
+    {
+      "group": "Networking & Data",
+      "items": ["Istio", "Linkerd", "Nginx", "Kafka", "Redis", "MySQL", "Postgres", "BigQuery", "BigTable"]
+    }
+  ],
+  "keywords": [
+    "Site Reliability Engineering",
+    "DevOps",
+    "Platform Engineering",
+    "Terraform First",
+    "Kubernetes",
+    "Cost Optimization",
+    "Infrastructure as Code",
+    "Observability",
+    "Incident Response",
+    "Postmortems",
+    "Multi-Cloud",
+    "AWS",
+    "GCP",
+    "GitOps",
+    "CI/CD",
+    "Terraform Cloud",
+    "ArgoCD",
+    "Helm",
+    "Shared VPC",
+    "Workload Identity",
+    "Security",
+    "Compliance",
+    "PCI",
+    "SOC2"
+  ]
+}
+

@@ -1,0 +1,37 @@
+# ---- Node / npm ----
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ---- Next.js build output ----
+.next/
+out/
+
+# ---- Environment files ----
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ---- OS / editor junk ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ---- Logs ----
+logs/
+*.log
+
+# ---- Coverage ----
+coverage/
+
+# ---- Docker ----
+# (we DO commit Dockerfile, but ignore runtime artifacts)
+docker-data/
+
