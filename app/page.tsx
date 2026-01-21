@@ -107,14 +107,14 @@ export default function Home() {
                 }}
               >
                 <ExperienceCard
-  		  item={item}
-		  query={query}
-		  defaultOpen={idx === 0 && !selectedId}
-		  forceOpen={selectedId === item.id}
-		  focusKey={focusKey}
-		  selected={selectedId === item.id}
-		/>
-	      </div>
+                  item={item}
+                  query={query}
+                  defaultOpen={idx === 0 && !selectedId}
+                  forceOpen={selectedId === item.id}
+                  focusKey={focusKey}
+                  selected={selectedId === item.id}
+                />
+              </div>
             ))}
           </div>
         </div>
