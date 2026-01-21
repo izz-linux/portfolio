@@ -22,7 +22,7 @@ function Highlighted({ text, query }: { text: string; query: string }) {
     <>
       {parts.map((p, i) =>
         p.hit ? (
-          <mark key={i} className="rounded bg-yellow-200 px-1">
+          <mark key={i} className="rounded bg-yellow-200 px-1 dark:bg-yellow-900 dark:text-yellow-100">
             {p.text}
           </mark>
         ) : (
@@ -62,7 +62,7 @@ export default function ExperienceCard({
 
   return (
     <div
-      className={`relative rounded-lg border bg-white p-4 transition-all duration-200 ${cardClass}`}
+      className={`relative rounded-lg border bg-white p-4 transition-all duration-200 dark:bg-gray-900 ${cardClass}`}
       tabIndex={-1}
     >
       {/* left accent */}
@@ -87,36 +87,36 @@ export default function ExperienceCard({
         aria-expanded={open}
       >
         <div className="min-w-0">
-          <div className="text-sm text-gray-600">
-            <span className="font-medium text-gray-900">
+          <div className="text-sm text-gray-600 dark:text-gray-400">
+            <span className="font-medium text-gray-900 dark:text-gray-100">
               <Highlighted text={item.title} query={query} />
             </span>{" "}
-            <span className="text-gray-500">@</span>{" "}
+            <span className="text-gray-500 dark:text-gray-500">@</span>{" "}
             <span className="font-medium">
               <Highlighted text={item.company} query={query} />
             </span>
           </div>
 
-          <div className={`${SPACING.xs.mt} text-xs text-gray-500`}>
+          <div className={`${SPACING.xs.mt} text-xs text-gray-500 dark:text-gray-400`}>
             {formatDateRange(item.startDate, item.endDate)}
             {item.location ? <> • <Highlighted text={item.location} query={query} /></> : null}
           </div>
 
           {item.summary ? (
-            <div className={`${SPACING.xs.mt} text-sm text-gray-700`}>
+            <div className={`${SPACING.xs.mt} text-sm text-gray-700 dark:text-gray-300`}>
               <Highlighted text={item.summary} query={query} />
             </div>
           ) : null}
         </div>
 
-        <div className={`shrink-0 text-sm ${selected ? "text-blue-700" : "text-gray-500"}`}>
+        <div className={`shrink-0 text-sm ${selected ? "text-blue-700 dark:text-blue-400" : "text-gray-500 dark:text-gray-400"}`}>
           {open ? "−" : "+"}
         </div>
       </button>
 
       {open ? (
         <div className={`${SPACING.sm.mt} ${SPACING.sm.spaceY}`}>
-          <ul className={`list-disc ${SPACING.xs.spaceY} pl-5 text-sm text-gray-700`}>
+          <ul className={`list-disc ${SPACING.xs.spaceY} pl-5 text-sm text-gray-700 dark:text-gray-300`}>
             {item.bullets.map((b, i) => (
               <li key={i}>
                 <Highlighted text={b} query={query} />

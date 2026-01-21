@@ -100,15 +100,15 @@ export const TEXT = {
 
 // Color Variants for Selection States
 export const SELECTION = {
-  CARD_BORDER_SELECTED: "border-blue-300",
-  CARD_BORDER_DEFAULT: "border-gray-200",
+  CARD_BORDER_SELECTED: "border-blue-300 dark:border-blue-600",
+  CARD_BORDER_DEFAULT: "border-gray-200 dark:border-gray-700",
   CARD_SHADOW_SELECTED: "shadow-lg",
   CARD_SHADOW_DEFAULT: "shadow-sm",
-  CARD_RING_SELECTED: "ring-2 ring-blue-200",
+  CARD_RING_SELECTED: "ring-2 ring-blue-200 dark:ring-blue-800",
 
-  BADGE_SELECTED: "border-blue-200 bg-blue-50 text-blue-900",
-  BADGE_DEFAULT: "border-gray-200 bg-gray-50 text-gray-700",
+  BADGE_SELECTED: "border-blue-200 bg-blue-50 text-blue-900 dark:border-blue-700 dark:bg-blue-950 dark:text-blue-100",
+  BADGE_DEFAULT: "border-gray-200 bg-gray-50 text-gray-700 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300",
 
-  TIMELINE_BAR_SELECTED: "bg-blue-700",
-  TIMELINE_BAR_DEFAULT: "bg-blue-900",
+  TIMELINE_BAR_SELECTED: "bg-blue-700 dark:bg-blue-500",
+  TIMELINE_BAR_DEFAULT: "bg-blue-900 dark:bg-blue-700",
 } as const;
