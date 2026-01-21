@@ -67,11 +67,11 @@ export default function Timeline({ items, selectedId, onSelect }: Props) {
   const sorted = [...items].sort((a, b) => (a.startDate < b.startDate ? 1 : -1));
 
   return (
-    <div className="relative w-full overflow-hidden rounded-lg border border-gray-200 bg-white p-4">
-      <div className={`${SPACING.sm.mb} text-lg font-semibold text-gray-900`}>{TEXT.TIMELINE_TITLE}</div>
+    <div className="relative w-full overflow-hidden rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-900">
+      <div className={`${SPACING.sm.mb} text-lg font-semibold text-gray-900 dark:text-gray-100`}>{TEXT.TIMELINE_TITLE}</div>
 
       <div className="relative overflow-hidden" style={{ height: HEIGHT }}>
-        <div className="absolute top-0 bottom-0 w-px bg-gray-300" style={{ left: AXIS_X }} />
+        <div className="absolute top-0 bottom-0 w-px bg-gray-300 dark:bg-gray-600" style={{ left: AXIS_X }} />
 
         {Array.from({ length: maxYear - minYear + 1 }).map((_, i) => {
           const year = minYear + i;
@@ -79,11 +79,11 @@ export default function Timeline({ items, selectedId, onSelect }: Props) {
           return (
             <div key={year} className="absolute left-0" style={{ top: y }}>
               <div
-                className="absolute h-2 w-2 rounded-full bg-gray-400"
+                className="absolute h-2 w-2 rounded-full bg-gray-400 dark:bg-gray-500"
                 style={{ left: AXIS_X - YEAR_LABEL_OFFSET, top: -YEAR_LABEL_OFFSET }}
               />
               <div
-                className="absolute text-xs text-gray-500"
+                className="absolute text-xs text-gray-500 dark:text-gray-400"
                 style={{
                   left: 0,
                   top: YEAR_LABEL_TOP_OFFSET,
@@ -138,7 +138,7 @@ export default function Timeline({ items, selectedId, onSelect }: Props) {
               {/* label */}
               <div
                 className={`absolute rounded-md px-2 py-1 overflow-hidden ${
-                  isSelected ? "bg-blue-50" : ""
+                  isSelected ? "bg-blue-50 dark:bg-blue-950" : ""
                 }`}
                 style={{
                   left: LABEL_X,
@@ -146,8 +146,8 @@ export default function Timeline({ items, selectedId, onSelect }: Props) {
                   width: `calc(100% - ${LABEL_WIDTH_OFFSET}px)`,
                 }}
               >
-                <div className="text-sm font-semibold text-gray-900 leading-tight truncate">{e.title}</div>
-                <div className="text-xs uppercase tracking-wide text-gray-500 truncate">{e.company}</div>
+                <div className="text-sm font-semibold text-gray-900 leading-tight truncate dark:text-gray-100">{e.title}</div>
+                <div className="text-xs uppercase tracking-wide text-gray-500 truncate dark:text-gray-400">{e.company}</div>
               </div>
             </button>
           );

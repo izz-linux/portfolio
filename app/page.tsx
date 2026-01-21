@@ -59,8 +59,8 @@ export default function Home() {
     <main className={`mx-auto ${LAYOUT.MAX_WIDTH} ${LAYOUT.PAGE_PADDING_X} ${LAYOUT.PAGE_PADDING_Y}`}>
       <header className={SPACING.sm.spaceY}>
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{profile.name}</h1>
-          <div className="text-sm text-gray-600">{profile.headline}</div>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">{profile.name}</h1>
+          <div className="text-sm text-gray-600 dark:text-gray-400">{profile.headline}</div>
         </div>
 
         {profile.links?.length ? (
@@ -69,7 +69,7 @@ export default function Home() {
               <a
                 key={l.href}
                 href={l.href}
-                className="underline decoration-gray-300 underline-offset-4 hover:decoration-gray-500"
+                className="underline decoration-gray-300 underline-offset-4 hover:decoration-gray-500 dark:decoration-gray-600 dark:hover:decoration-gray-400"
               >
                 {l.label}
               </a>
@@ -78,7 +78,7 @@ export default function Home() {
         ) : null}
 
         {profile.summary?.length ? (
-          <div className={`${SPACING.xs.spaceY} text-sm text-gray-700`}>
+          <div className={`${SPACING.xs.spaceY} text-sm text-gray-700 dark:text-gray-300`}>
             {profile.summary.map((s, i) => (
               <p key={i}>{s}</p>
             ))}
@@ -96,14 +96,14 @@ export default function Home() {
           {filteredExperience.length ? (
             <Timeline items={filteredExperience} selectedId={selectedId} onSelect={onSelectFromTimeline} />
           ) : (
-            <div className="rounded-md border border-gray-200 bg-white p-4 text-sm text-gray-700">
+            <div className="rounded-md border border-gray-200 bg-white p-4 text-sm text-gray-700 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300">
               {TEXT.NO_MATCHES}
             </div>
           )}
 
           {/* Cards live below timeline */}
           <div ref={cardsSectionRef} className={SPACING.md.spaceY}>
-            <div className="text-sm font-semibold text-gray-900">{TEXT.EXPERIENCE_TITLE}</div>
+            <div className="text-sm font-semibold text-gray-900 dark:text-gray-100">{TEXT.EXPERIENCE_TITLE}</div>
 
             {filteredExperience.map((item, idx) => (
               <div

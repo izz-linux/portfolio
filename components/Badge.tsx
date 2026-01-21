@@ -21,7 +21,7 @@ export function Badge({
     variant === "selected" ? SELECTION.BADGE_SELECTED : SELECTION.BADGE_DEFAULT;
 
   const interactiveClasses = onClick
-    ? "cursor-pointer hover:bg-gray-100 transition-colors"
+    ? "cursor-pointer hover:bg-gray-100 transition-colors dark:hover:bg-gray-700"
     : "";
 
   return (

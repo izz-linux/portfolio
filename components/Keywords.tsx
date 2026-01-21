@@ -14,8 +14,8 @@ export default function Keywords({ keywords, query, onPick }: Props) {
   return (
     <div className={SPACING.sm.spaceY}>
       <div className="flex items-baseline justify-between">
-        <h2 className="text-sm font-semibold text-gray-900">{TEXT.KEYWORDS_TITLE}</h2>
-        <div className="text-xs text-gray-500">
+        <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100">{TEXT.KEYWORDS_TITLE}</h2>
+        <div className="text-xs text-gray-500 dark:text-gray-400">
           {filtered.length} {TEXT.KEYWORDS_COUNT_SUFFIX}
         </div>
       </div>
