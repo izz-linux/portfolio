@@ -3,6 +3,8 @@
 import { useEffect, useMemo, useState } from "react";
 import type { ExperienceItem } from "@/lib/profile";
 import { formatDateRange, highlightParts } from "@/lib/search";
+import { Badge } from "@/components/Badge";
+import { SELECTION, SPACING, ANIMATION } from "@/lib/constants";
 
 type Props = {
   item: ExperienceItem;
@@ -11,6 +13,7 @@ type Props = {
   forceOpen?: boolean;
   focusKey?: string;
   selected?: boolean;
+  onSelect?: () => void;
 };
 
 function Highlighted({ text, query }: { text: string; query: string }) {
@@ -36,17 +39,26 @@ export default function ExperienceCard({
   defaultOpen,
   forceOpen,
   focusKey,
-  selected
+  selected,
+  onSelect
 }: Props) {
   const [open, setOpen] = useState(!!defaultOpen);
 
+  // Open when forceOpen becomes true
   useEffect(() => {
     if (forceOpen) setOpen(true);
   }, [forceOpen, focusKey]);
 
+  // Close when card becomes unselected
+  useEffect(() => {
+    if (!selected && open) {
+      setOpen(false);
+    }
+  }, [selected, open]);
+
   const cardClass = selected
-    ? "border-blue-300 shadow-lg ring-2 ring-blue-200 transform-gpu scale-[1.01]"
-    : "border-gray-200 shadow-sm";
+    ? `${SELECTION.CARD_BORDER_SELECTED} ${SELECTION.CARD_SHADOW_SELECTED} ${SELECTION.CARD_RING_SELECTED} transform-gpu scale-[${ANIMATION.CARD_SELECTED_SCALE}]`
+    : `${SELECTION.CARD_BORDER_DEFAULT} ${SELECTION.CARD_SHADOW_DEFAULT}`;
 
   return (
     <div
@@ -62,7 +74,15 @@ export default function ExperienceCard({
 
       <button
         type="button"
-        onClick={() => setOpen((v) => !v)}
+        onClick={() => {
+          // If card is not selected, select it and open it
+          if (!selected) {
+            onSelect?.();
+          } else {
+            // If already selected, just toggle open/close
+            setOpen((v) => !v);
+          }
+        }}
         className="flex w-full items-start justify-between gap-4 text-left"
         aria-expanded={open}
       >
@@ -77,13 +97,13 @@ export default function ExperienceCard({
             </span>
           </div>
 
-          <div className="mt-1 text-xs text-gray-500">
+          <div className={`${SPACING.xs.mt} text-xs text-gray-500`}>
             {formatDateRange(item.startDate, item.endDate)}
             {item.location ? <> • <Highlighted text={item.location} query={query} /></> : null}
           </div>
 
           {item.summary ? (
-            <div className="mt-2 text-sm text-gray-700">
+            <div className={`${SPACING.xs.mt} text-sm text-gray-700`}>
               <Highlighted text={item.summary} query={query} />
             </div>
           ) : null}
@@ -95,8 +115,8 @@ export default function ExperienceCard({
       </button>
 
       {open ? (
-        <div className="mt-3 space-y-3">
-          <ul className="list-disc space-y-2 pl-5 text-sm text-gray-700">
+        <div className={`${SPACING.sm.mt} ${SPACING.sm.spaceY}`}>
+          <ul className={`list-disc ${SPACING.xs.spaceY} pl-5 text-sm text-gray-700`}>
             {item.bullets.map((b, i) => (
               <li key={i}>
                 <Highlighted text={b} query={query} />
@@ -105,18 +125,11 @@ export default function ExperienceCard({
           </ul>
 
           {item.skillsUsed?.length ? (
-            <div className="flex flex-wrap gap-2">
+            <div className={`flex flex-wrap ${SPACING.xs.gap}`}>
               {item.skillsUsed.map((s) => (
-                <span
-                  key={s}
-                  className={`rounded-full border px-2 py-1 text-xs ${
-                    selected
-                      ? "border-blue-200 bg-blue-50 text-blue-900"
-                      : "border-gray-200 bg-gray-50 text-gray-700"
-                  }`}
-                >
+                <Badge key={s} variant={selected ? "selected" : "default"}>
                   <Highlighted text={s} query={query} />
-                </span>
+                </Badge>
               ))}
             </div>
           ) : null}

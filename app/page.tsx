@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { getProfile } from "@/lib/profile";
 import { matchesExperience } from "@/lib/search";
+import { ANIMATION, LAYOUT, SPACING, TEXT } from "@/lib/constants";
 import SearchBar from "@/components/SearchBar";
 import Timeline from "@/components/Timeline";
 import Skills from "@/components/Skills";
@@ -46,19 +47,24 @@ export default function Home() {
         const focusable = el.querySelector<HTMLElement>("[tabindex='-1']");
         focusable?.focus();
       }
-    }, 250);
+    }, ANIMATION.CARD_SCROLL_DELAY_MS);
+  };
+
+  const onSelectCard = (id: string) => {
+    setSelectedId(id);
+    setFocusKey(String(Date.now())); // bump to force open in ExperienceCard
   };
 
   return (
-    <main className="mx-auto max-w-5xl px-4 py-10">
-      <header className="space-y-3">
+    <main className={`mx-auto ${LAYOUT.MAX_WIDTH} ${LAYOUT.PAGE_PADDING_X} ${LAYOUT.PAGE_PADDING_Y}`}>
+      <header className={SPACING.sm.spaceY}>
         <div>
           <h1 className="text-2xl font-bold text-gray-900">{profile.name}</h1>
           <div className="text-sm text-gray-600">{profile.headline}</div>
         </div>
 
         {profile.links?.length ? (
-          <div className="flex flex-wrap gap-3 text-sm">
+          <div className={`flex flex-wrap ${SPACING.sm.gap} text-sm`}>
             {profile.links.map((l) => (
               <a
                 key={l.href}
@@ -72,32 +78,32 @@ export default function Home() {
         ) : null}
 
         {profile.summary?.length ? (
-          <div className="space-y-1 text-sm text-gray-700">
+          <div className={`${SPACING.xs.spaceY} text-sm text-gray-700`}>
             {profile.summary.map((s, i) => (
               <p key={i}>{s}</p>
             ))}
           </div>
         ) : null}
 
-        <div className="pt-2">
+        <div className={SPACING.xs.pt}>
           <SearchBar query={query} onChange={setQuery} />
         </div>
       </header>
 
-      <section className="mt-10 grid gap-10 md:grid-cols-[1.6fr_1fr]">
-        <div className="space-y-6">
+      <section className={`${SPACING["2xl"].mt} grid ${SPACING["2xl"].gap} md:grid-cols-[1.6fr_1fr]`}>
+        <div className={SPACING.lg.spaceY}>
           {/* Timeline picker */}
           {filteredExperience.length ? (
             <Timeline items={filteredExperience} selectedId={selectedId} onSelect={onSelectFromTimeline} />
           ) : (
             <div className="rounded-md border border-gray-200 bg-white p-4 text-sm text-gray-700">
-              No matches. Try a different search term.
+              {TEXT.NO_MATCHES}
             </div>
           )}
 
           {/* Cards live below timeline */}
-          <div ref={cardsSectionRef} className="space-y-4">
-            <div className="text-sm font-semibold text-gray-900">Experience Details</div>
+          <div ref={cardsSectionRef} className={SPACING.md.spaceY}>
+            <div className="text-sm font-semibold text-gray-900">{TEXT.EXPERIENCE_TITLE}</div>
 
             {filteredExperience.map((item, idx) => (
               <div
@@ -113,13 +119,14 @@ export default function Home() {
 		  forceOpen={selectedId === item.id}
 		  focusKey={focusKey}
 		  selected={selectedId === item.id}
+		  onSelect={() => onSelectCard(item.id)}
 		/>
 	      </div>
             ))}
           </div>
         </div>
 
-        <aside className="space-y-8">
+        <aside className={SPACING.xl.spaceY}>
           <Skills groups={profile.skills} />
           <Keywords keywords={profile.keywords} query={query} onPick={(kw) => setQuery(kw)} />
         </aside>

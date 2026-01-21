@@ -1,4 +1,6 @@
 import type { SkillGroup } from "@/lib/profile";
+import { Badge } from "@/components/Badge";
+import { SPACING, TEXT } from "@/lib/constants";
 
 type Props = {
   groups: SkillGroup[];
@@ -6,16 +8,16 @@ type Props = {
 
 export default function Skills({ groups }: Props) {
   return (
-    <div className="space-y-4">
-      <h2 className="text-sm font-semibold text-gray-900">Skills</h2>
+    <div className={SPACING.md.spaceY}>
+      <h2 className="text-sm font-semibold text-gray-900">{TEXT.SKILLS_TITLE}</h2>
       {groups.map((g) => (
         <div key={g.group}>
           <div className="text-xs font-semibold text-gray-700">{g.group}</div>
-          <div className="mt-2 flex flex-wrap gap-2">
+          <div className={`${SPACING.xs.mt} flex flex-wrap ${SPACING.xs.gap}`}>
             {g.items.map((s) => (
-              <span key={s} className="rounded-full border border-gray-200 bg-white px-2 py-1 text-xs text-gray-700">
+              <Badge key={s} className="bg-white">
                 {s}
-              </span>
+              </Badge>
             ))}
           </div>
         </div>

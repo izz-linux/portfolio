@@ -1,3 +1,6 @@
+import { Badge } from "@/components/Badge";
+import { SPACING, TEXT } from "@/lib/constants";
+
 type Props = {
   keywords: string[];
   query: string;
@@ -9,23 +12,19 @@ export default function Keywords({ keywords, query, onPick }: Props) {
   const filtered = q ? keywords.filter((k) => k.toLowerCase().includes(q)) : keywords;
 
   return (
-    <div className="space-y-3">
+    <div className={SPACING.sm.spaceY}>
       <div className="flex items-baseline justify-between">
-        <h2 className="text-sm font-semibold text-gray-900">Keywords</h2>
-        <div className="text-xs text-gray-500">{filtered.length} shown</div>
+        <h2 className="text-sm font-semibold text-gray-900">{TEXT.KEYWORDS_TITLE}</h2>
+        <div className="text-xs text-gray-500">
+          {filtered.length} {TEXT.KEYWORDS_COUNT_SUFFIX}
+        </div>
       </div>
 
-      <div className="flex flex-wrap gap-2">
+      <div className={`flex flex-wrap ${SPACING.xs.gap}`}>
         {filtered.map((k) => (
-          <button
-            key={k}
-            type="button"
-            onClick={() => onPick(k)}
-            className="rounded-full border border-gray-200 bg-gray-50 px-2 py-1 text-xs text-gray-700 hover:bg-gray-100"
-            title="Click to search"
-          >
+          <Badge key={k} onClick={() => onPick(k)}>
             {k}
-          </button>
+          </Badge>
         ))}
       </div>
     </div>

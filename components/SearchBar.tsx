@@ -1,5 +1,7 @@
 "use client";
 
+import { SPACING, TEXT } from "@/lib/constants";
+
 type Props = {
   query: string;
   onChange: (v: string) => void;
@@ -9,11 +11,11 @@ export default function SearchBar({ query, onChange }: Props) {
   return (
     <div className="w-full">
       <label className="text-sm text-gray-600">Search experience, skills, keywords</label>
-      <div className="mt-2 flex gap-2">
+      <div className={`${SPACING.xs.mt} flex ${SPACING.xs.gap}`}>
         <input
           value={query}
           onChange={(e) => onChange(e.target.value)}
-          placeholder='Try "terraform", "kubernetes", "incident"...'
+          placeholder={TEXT.SEARCH_PLACEHOLDER}
           className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm outline-none focus:border-gray-400"
         />
         <button
