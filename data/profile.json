@@ -3,7 +3,8 @@
   "headline": "Senior DevOps Engineer / Site Reliability Engineer",
   "links": [
     { "label": "Email", "href": "mailto:izz@linux.com" },
-    { "label": "LinkedIn", "href": "https://linkedin.com/in/izznoland/" }
+    { "label": "LinkedIn", "href": "https://www.linkedin.com/in/izznoland/" },
+    { "label": "GitHub", "href": "https://github.com/izz-linux" }
   ],
   "summary": [
     "Senior DevOps Engineer and Site Reliability Expert with 20 years of experience managing large-scale cloud infrastructure, Kubernetes platforms, and Infrastructure as Code.",
@@ -45,7 +46,7 @@
       "id": "samcart",
       "company": "Samcart",
       "title": "Staff Site Reliability Engineer",
-      "location": "Austin, TX",
+      "location": "Austin, TX (Remote)",
       "startDate": "2023-03",
       "endDate": "2024-02",
       "summary": "Platform engineer focused on migrating container workloads and codifying infrastructure at scale.",
@@ -67,7 +68,7 @@
       "id": "pixability",
       "company": "Pixability",
       "title": "Senior DevOps Engineer",
-      "location": "Boston, MA",
+      "location": "Boston, MA (Remote)",
       "startDate": "2022-04",
       "endDate": "2023-01",
       "summary": "Platform engineer improving CI/CD and Kubernetes reliability on AWS.",
@@ -90,7 +91,7 @@
       "id": "shipt",
       "company": "Shipt",
       "title": "Senior Site Reliability Engineer",
-      "location": "Birmingham, AL",
+      "location": "Birmingham, AL (Remote)",
       "startDate": "2021-06",
       "endDate": "2022-04",
       "summary": "SRE on the Observability team building internal tooling and migrating services to GCP.",
@@ -133,6 +134,227 @@
         "Chef",
         "Compliance"
       ]
+    },
+    {
+      "id": "rxbenefits",
+      "company": "RxBenefits",
+      "title": "Database Architect",
+      "location": "Birmingham, AL",
+      "startDate": "2018-03",
+      "endDate": "2018-10",
+      "summary": "Led database architecture, migration, and support of MySQL HA Cluster on RHEL.",
+      "bullets": [
+        "Designed, Implemented, and maintained corporate LOB application database clusters.",
+        "Architected and led migration to MySQL HA Cluster, improving database reliability and performance.",
+        "Monitored database performance and implemented tuning strategies to optimize query efficiency.",
+        "Collaborated closely with IT Development team to transition application platforms from SPOF Windows Server to multi-tiered Linux-based architecture."
+      ],
+      "skillsUsed": [
+        "MySQL",
+        "VMWare",
+        "Grafana",
+        "Zabbix",
+        "Linux",
+        "Compliance",
+        "SlackOps"
+      ]
+    },
+    {
+      "id": "rxbenefits-2",
+      "company": "RxBenefits",
+      "title": "Senior Systems Administrator",
+      "location": "Birmingham, AL",
+      "startDate": "2017-05",
+      "endDate": "2018-03",
+      "summary": "Senior Systems Administrator managing Linux and Windows servers in a healthcare environment.",
+      "bullets": [
+        "Managed and maintained Linux and Windows servers, ensuring high availability and performance.",
+        "Implemented monitoring solutions using Zabbix to proactively identify and resolve issues.",
+        "Led virtualization efforts using VMware, improving resource utilization and reducing costs.",
+        "Ensured compliance with healthcare regulations including HIPAA.",
+        "Collaborated with cross-functional teams to support application deployments and infrastructure projects.",
+        "Led design of corporate office relocation including WAP placement, Network / VLAN Design, and MPLS configuration for VM migrations."
+      ],
+      "skillsUsed": [
+        "Linux",
+        "Windows Server",
+        "VMWare",
+        "Zabbix",
+        "Compliance",
+        "Networking",
+        "SlackOps"
+      ]
+    },
+    {
+      "id": "bcbsal",
+      "company": "BCBS AL",
+      "title": "Configuration Management Administrator (Contract)",
+      "location": "Birmingham, AL",
+      "startDate": "2016-08",
+      "endDate": "2017-04",
+      "summary": "Configuration Management Administrator responsible for maintaining CIs in ServiceNow CMDB.",
+      "bullets": [
+        "Maintained accurate and up-to-date configuration items (CIs) in ServiceNow CMDB.",
+        "Collaborated with IT teams to ensure proper documentation and tracking of infrastructure changes.",
+        "Assisted in the development and implementation of configuration management processes and procedures.",
+        "Provided support for IT projects by ensuring CIs were properly documented and tracked throughout the project lifecycle.",
+        "Conducted regular audits of the CMDB to ensure data integrity and compliance with organizational standards."
+      ],
+      "skillsUsed": [
+        "ITIL",
+        "Python",
+        "CMDB",
+        "Linux"
+      ]
+    },
+    {
+      "id": "wepa",
+      "company": "wepa",
+      "title": "Senior Systems Engineer",
+      "location": "Alabaster, AL",
+      "startDate": "2013-07",
+      "endDate": "2016-08",
+      "summary": "Senior Systems Engineer managing Linux and Windows servers in a print management environment.",
+      "bullets": [
+        "Managed and maintained Linux and Windows servers, ensuring high availability and performance.",
+        "Implemented monitoring solutions to proactively identify and resolve issues.",
+        "Led cloud migration efforts, improving resource utilization and reducing costs.",
+        "Collaborated with cross-functional teams to support application deployments and infrastructure projects.",
+        "Managed RPM package repository and automated deployments with Jenkins."
+      ],
+      "skillsUsed": [
+        "Linux",
+        "Windows Server",
+        "VMWare",
+        "Networking",
+        "Monitoring",
+        "Jenkins",
+        "AWS",
+        "Python",
+        "PowerShell"
+      ]
+    },
+    {
+      "id": "hibbett",
+      "company": "Hibbett",
+      "title": "Network Administrator",
+      "location": "Birmingham, AL",
+      "startDate": "2011-09",
+      "endDate": "2013-07",
+      "summary": "Network Administrator managing Linux and Windows servers in a retail environment.",
+      "bullets": [
+        "Managed and maintained Linux and Windows servers, ensuring high availability and performance.",
+        "Implemented monitoring solutions to proactively identify and resolve issues.",
+        "Led virtualization efforts using VMware, improving resource utilization and reducing costs.",
+        "Led migration of physical servers to virtual environment, reducing hardware costs and improving scalability.",
+        "Led initiatives of Exchange 2010 migration, MSSQL HA Cluster, and SAN redesign.",
+        "Architected central application and server inventory system utilizing PHP and MySQL.",
+        "Cut down MVP web deployment time utilizing smart rsync and bash scripting."
+      ],
+      "skillsUsed": [
+        "Linux",
+        "Windows Server",
+        "VMWare",
+        "Networking",
+        "PHP",
+        "MySQL",
+        "VNX Storage",
+        "Nagios",
+        "Bash",
+        "PowerShell"
+      ]
+    },
+    {
+      "id": "iae",
+      "company": "IzTech",
+      "title": "Owner / Consultant",
+      "location": "Central Alabama",
+      "startDate": "2010-07",
+      "endDate": "2011-07",
+      "summary": "Provided IT consulting services to small and medium-sized businesses.",
+      "bullets": [
+        "Provided IT consulting services to small and medium-sized businesses.",
+        "Helped clients design and implement IT infrastructure solutions.",
+        "Provided training and support for IT staff."
+      ],
+      "skillsUsed": [
+        "Linux",
+        "Windows Server",
+        "Networking",
+        "Bash",
+        "VBScript"
+      ]
+    },
+    {
+      "id": "tech-mahindra",
+      "company": "Tech Mahindra",
+      "title": "IT Operations and Delivery Program Manager",
+      "location": "Kuala Lumpur, Malaysia",
+      "startDate": "2007-07",
+      "endDate": "2010-03",
+      "summary": "IT Operations and Delivery Program Manager overseeing projects across APAC region.",
+      "bullets": [
+        "Managed IT operations and delivery projects across APAC region, ensuring successful project completion within budget and timeline.",
+        "Managed local hiring of Infrastrcuture Management Team in Kuala Lumpur, Malaysia.",
+        "Implemented Nagios 3.0 for device montioring in 24x7 NOC environment.",
+        "Consulted with Central Bank of Malaysia (Bank Negara) on security posture and best practices for financial institutions."
+        ],
+      "skillsUsed": [
+        "Linux",
+        "Windows Server",
+        "Bugzilla",
+        "PMP",
+        "Six Sigma",
+        "ITIL"
+      ]
+    },
+    {
+      "id": "ibm",
+      "company": "IBM Global Services (Contract)",
+      "title": "Windows Systems Engineer",
+      "location": "Vance, AL",
+      "startDate": "2006-08",
+      "endDate": "2007-04",
+      "summary": "Windows Systems Engineer supporting Mercedes-Benz USA onsite in Vance, AL.",
+      "bullets": [
+        "Provided Windows systems engineering support for Mercedes-Benz USA onsite in Vance, AL.",
+        "Managed and maintained Windows servers, ensuring high availability and performance.",
+        "Migrated from Novell to Active Directory, improving security and user management.",
+        "Created VBScripts to parse Novell trustee reports and apply ACLs onto AD file servers.",
+        "Developed and maintained file, application, and Citrix farm two and four node clusters."
+      ],
+      "skillsUsed": [
+        "ESXi",
+        "Windows Server",
+        "VBScript",
+        "TSM",
+        "Citrix",
+        "Active Directory",
+        "Clustering"
+      ]
+    },
+    {
+      "id": "uab",
+      "company": "UAB",
+      "title": "Information Systems Specialist II",
+      "location": "Birmingham, AL",
+      "startDate": "2004-08",
+      "endDate": "2006-07",
+      "summary": "Information Systems Specialist II providing systems administration support for UAB's internal IT infrastructure.",
+      "bullets": [
+        "Created and Managed Group Policies in Active Directory to enforce security and configuration standards.",
+        "Automated routine system administration tasks using VBScript and batch scripting, improving efficiency and reducing errors.",
+        "Provided Tier 2 and Tier 3 support for Windows servers and workstations, resolving complex technical issues.",
+        "Developed bootable CD-ROM by patching and recompiling the Linux 2.4.18 kernel in order to recognize SATA hard drives for ZENworks imaging."
+      ],
+      "skillsUsed": [
+        "Linux",
+        "Windows Server",
+        "Bash",
+        "VBScript",
+        "Active Directory",
+        "ZENworks"
+      ]
     }
   ],
   "skills": [
@@ -165,10 +387,10 @@
     "Site Reliability Engineering",
     "DevOps",
     "Platform Engineering",
-    "Terraform First",
+    "Terraform",
     "Kubernetes",
     "Cost Optimization",
-    "Infrastructure as Code",
+    "Infrastructure as Code (IaC)",
     "Observability",
     "Incident Response",
     "Postmortems",
@@ -184,8 +406,8 @@
     "Workload Identity",
     "Security",
     "Compliance",
+    "HIPAA",
     "PCI",
     "SOC2"
   ]
 }
-
