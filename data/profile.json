@@ -1,13 +1,13 @@
 {
   "name": "Izz Noland",
-  "headline": "Senior DevOps Engineer / Site Reliability Engineer",
+  "headline": "Platform Engineering, DevOps, and SRE Expert",
   "links": [
     { "label": "Email", "href": "mailto:izz@linux.com" },
     { "label": "LinkedIn", "href": "https://www.linkedin.com/in/izznoland/" },
     { "label": "GitHub", "href": "https://github.com/izz-linux" }
   ],
   "summary": [
-    "Senior DevOps Engineer and Site Reliability Expert with 20 years of experience managing large-scale cloud infrastructure, Kubernetes platforms, and Infrastructure as Code.",
+    "Platform Engineering, DevOps, and SRE Expert with 20 years of experience managing large-scale cloud infrastructure, Kubernetes platforms, and Infrastructure as Code.",
     "Proven track record delivering measurable business impact including $100k+ monthly cost savings through automation, reliability engineering, and platform optimization across AWS and GCP."
   ],
   "experience": [
