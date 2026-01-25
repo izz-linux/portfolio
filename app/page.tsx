@@ -69,6 +69,8 @@ export default function Home() {
               <a
                 key={l.href}
                 href={l.href}
+                target={l.target}
+                rel={l.rel}
                 className="underline decoration-gray-300 underline-offset-4 hover:decoration-gray-500 dark:decoration-gray-600 dark:hover:decoration-gray-400"
               >
                 {l.label}

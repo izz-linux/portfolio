@@ -3,8 +3,10 @@
   "headline": "Platform Engineering, DevOps, and SRE Expert",
   "links": [
     { "label": "Email", "href": "mailto:izz@linux.com" },
-    { "label": "LinkedIn", "href": "https://www.linkedin.com/in/izznoland/" },
-    { "label": "GitHub", "href": "https://github.com/izz-linux" }
+    { "label": "LinkedIn", "target": "_blank", "rel": "noopener noreferrer", "href": "https://www.linkedin.com/in/izznoland/" },
+    { "label": "GitHub", "target": "_blank", "rel": "noopener noreferrer", "href": "https://github.com/izz-linux" },
+    { "label": "Calendar", "target": "_blank", "rel": "noopener noreferrer", "href": "https://calendly.com/izz-linux" },
+    { "label": "Personal Site", "target": "_blank", "rel": "noopener noreferrer", "href": "https://izznoland.dev" }
   ],
   "summary": [
     "Platform Engineering, DevOps, and SRE Expert with 20 years of experience managing large-scale cloud infrastructure, Kubernetes platforms, and Infrastructure as Code.",
