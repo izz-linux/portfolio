@@ -1,6 +1,6 @@
 import profileData from "@/data/profile.json";
 
-export type LinkItem = { label: string; href: string };
+export type LinkItem = { label: string; target?: string; rel?: string; href: string };
 
 export type ExperienceItem = {
   id: string;
@@ -30,4 +30,3 @@ export function getProfile(): Profile {
   // profile.json is imported at build time
   return profileData as Profile;
 }
-
