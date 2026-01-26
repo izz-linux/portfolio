@@ -378,7 +378,7 @@
     },
     {
       "group": "Programming & Automation",
-      "items": ["Go", "Python", "Bash", "Ruby", "Groovy"]
+      "items": ["Go", "Python", "TypeScript", "Bash", "Ruby", "Groovy"]
     },
     {
       "group": "Networking & Data",
