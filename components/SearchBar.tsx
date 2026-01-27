@@ -10,7 +10,7 @@ type Props = {
 export default function SearchBar({ query, onChange }: Props) {
   return (
     <div className="w-full">
-      <label className="text-sm text-gray-600 dark:text-gray-400">Search experience, skills, keywords</label>
+      <label className="text-sm text-gray-600 dark:text-gray-400">Search experience, skills, certifications, keywords</label>
       <div className={`${SPACING.xs.mt} flex ${SPACING.xs.gap}`}>
         <input
           value={query}

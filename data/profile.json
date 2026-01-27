@@ -385,6 +385,14 @@
       "items": ["Istio", "Linkerd", "Nginx", "Kafka", "Redis", "MySQL", "Postgres", "BigQuery", "BigTable"]
     }
   ],
+  "certifications": [
+    {
+      "name": "Certified Kubernetes Administrator (CKA)",
+      "issuer": "The Linux Foundation",
+      "date": "2024-12",
+      "credentialUrl": "https://www.credly.com/badges/3d2943b9-cf3b-4922-9506-5955133fd15f/public_url"
+    }
+  ],
   "keywords": [
     "Site Reliability Engineering",
     "DevOps",

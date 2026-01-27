@@ -1,4 +1,5 @@
 import { Badge } from "@/components/Badge";
+import { highlightParts } from "@/lib/search";
 import { SPACING, TEXT } from "@/lib/constants";
 
 type Props = {
@@ -7,9 +8,28 @@ type Props = {
   onPick: (kw: string) => void;
 };
 
+function Highlight({ text, query }: { text: string; query?: string }) {
+  const parts = highlightParts(text, query ?? "");
+  return (
+    <>
+      {parts.map((p, i) =>
+        p.hit ? (
+          <mark key={i} className="bg-yellow-200 dark:bg-yellow-900">
+            {p.text}
+          </mark>
+        ) : (
+          <span key={i}>{p.text}</span>
+        )
+      )}
+    </>
+  );
+}
+
 export default function Keywords({ keywords, query, onPick }: Props) {
   const q = query.trim().toLowerCase();
   const filtered = q ? keywords.filter((k) => k.toLowerCase().includes(q)) : keywords;
+
+  if (!filtered.length) return null;
 
   return (
     <div className={SPACING.sm.spaceY}>
@@ -23,7 +43,7 @@ export default function Keywords({ keywords, query, onPick }: Props) {
       <div className={`flex flex-wrap ${SPACING.xs.gap}`}>
         {filtered.map((k) => (
           <Badge key={k} onClick={() => onPick(k)}>
-            {k}
+            <Highlight text={k} query={query} />
           </Badge>
         ))}
       </div>
