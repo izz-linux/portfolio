@@ -16,6 +16,14 @@ export type ExperienceItem = {
 
 export type SkillGroup = { group: string; items: string[] };
 
+export type Certification = {
+  name: string;
+  issuer: string;
+  date: string; // YYYY-MM
+  credentialId?: string;
+  credentialUrl?: string;
+};
+
 export type Profile = {
   name: string;
   headline: string;
@@ -23,6 +31,7 @@ export type Profile = {
   summary?: string[];
   experience: ExperienceItem[];
   skills: SkillGroup[];
+  certifications?: Certification[];
   keywords: string[];
 };
 

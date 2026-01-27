@@ -1,4 +1,4 @@
-import type { ExperienceItem } from "./profile";
+import type { Certification, ExperienceItem } from "./profile";
 
 export function normalize(s: string): string {
   return s.toLowerCase().trim();
@@ -27,6 +27,15 @@ export function matchesExperience(e: ExperienceItem, qRaw: string): boolean {
   ]
     .join(" ")
     .toLowerCase();
+
+  return hay.includes(q);
+}
+
+export function matchesCertification(c: Certification, qRaw: string): boolean {
+  const q = normalize(qRaw);
+  if (!q) return true;
+
+  const hay = [c.name, c.issuer, c.credentialId ?? ""].join(" ").toLowerCase();
 
   return hay.includes(q);
 }

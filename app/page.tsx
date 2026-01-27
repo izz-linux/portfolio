@@ -2,11 +2,12 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { getProfile } from "@/lib/profile";
-import { matchesExperience } from "@/lib/search";
+import { matchesCertification, matchesExperience } from "@/lib/search";
 import { ANIMATION, LAYOUT, SPACING, TEXT } from "@/lib/constants";
 import SearchBar from "@/components/SearchBar";
 import Timeline from "@/components/Timeline";
 import Skills from "@/components/Skills";
+import Certifications from "@/components/Certifications";
 import Keywords from "@/components/Keywords";
 import ExperienceCard from "@/components/ExperienceCard";
 
@@ -23,6 +24,10 @@ export default function Home() {
     const sorted = [...profile.experience].sort((a, b) => (a.startDate < b.startDate ? 1 : -1));
     return sorted.filter((e) => matchesExperience(e, query));
   }, [profile.experience, query]);
+
+  const filteredCertifications = useMemo(() => {
+    return (profile.certifications ?? []).filter((c) => matchesCertification(c, query));
+  }, [profile.certifications, query]);
 
   // If search filter removes the selected item, clear selection
   useEffect(() => {
@@ -129,7 +134,10 @@ export default function Home() {
         </div>
 
         <aside className={SPACING.xl.spaceY}>
-          <Skills groups={profile.skills} />
+          <Skills groups={profile.skills} query={query} />
+          {filteredCertifications.length ? (
+            <Certifications certifications={filteredCertifications} query={query} />
+          ) : null}
           <Keywords keywords={profile.keywords} query={query} onPick={(kw) => setQuery(kw)} />
         </aside>
       </section>

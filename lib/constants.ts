@@ -94,6 +94,7 @@ export const TEXT = {
   TIMELINE_TITLE: "Timeline",
   EXPERIENCE_TITLE: "Experience Details",
   SKILLS_TITLE: "Skills",
+  CERTIFICATIONS_TITLE: "Certifications",
   KEYWORDS_TITLE: "Keywords",
   KEYWORDS_COUNT_SUFFIX: "shown",
 } as const;
