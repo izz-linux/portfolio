@@ -378,7 +378,7 @@
     },
     {
       "group": "Programming & Automation",
-      "items": ["Go", "Python", "TypeScript", "Bash", "Ruby", "Groovy"]
+      "items": ["Go", "Python", "TypeScript", "Bash", "Ruby", "Groovy", "Claude Code", "GitHub Copilot", "OpenAI Codex"]
     },
     {
       "group": "Networking & Data",
