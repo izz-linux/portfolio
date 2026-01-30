@@ -22,9 +22,10 @@
       "endDate": "2025-11",
       "summary": "Led infrastructure strategy and SRE practices for a large-scale gaming and sports betting platform supporting millions of concurrent users.",
       "bullets": [
-        "Led infrastructure strategy for 100+ Kubernetes clusters across GKE and Anthos, supporting high-availability gaming platforms.",
+        "Led infrastructure strategy for 100+ Kubernetes clusters across GCP's GKE and Anthos, supporting high-availability gaming platforms.",
         "Delivered $100K+/month in cost savings through event-driven scaling, HPA implementation, and fleet-wide resource right-sizing.",
         "Championed SRE practices as Data Vertical lead: prod-mirror environments, fault tolerance testing, and support workflows adopted across teams.",
+        "Collaborated closely with Data Engineering to bring odds predictions in-house, reducing 3rd party dependencies and cost, and improving accuracy with Monte Carlo simulations.",
         "Served as Kubernetes SME and second-highest code contributor to ephemeral environment platform, mentoring engineers on Go, GitHub Actions, ArgoCD, and Helm.",
         "Architected a Terraform-first modernization strategy, migrating from Terragrunt to Terraform Cloud while maintaining legacy systems.",
         "Reduced deployment time from hours to minutes through CI/CD and deployment automation improvements."
