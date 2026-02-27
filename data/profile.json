@@ -5,7 +5,6 @@
     { "label": "Email", "href": "mailto:izz@linux.com" },
     { "label": "LinkedIn", "target": "_blank", "rel": "noopener noreferrer", "href": "https://www.linkedin.com/in/izznoland/" },
     { "label": "GitHub", "target": "_blank", "rel": "noopener noreferrer", "href": "https://github.com/izz-linux" },
-    { "label": "Calendar", "target": "_blank", "rel": "noopener noreferrer", "href": "https://calendly.com/izz-linux" },
     { "label": "Personal Site", "target": "_blank", "rel": "noopener noreferrer", "href": "https://izznoland.dev" }
   ],
   "summary": [
@@ -13,6 +12,29 @@
     "Proven track record delivering measurable business impact including $100k+ monthly cost savings through automation, reliability engineering, and platform optimization across AWS and GCP."
   ],
   "experience": [
+    {
+      "id": "stord",
+      "company": "Stord",
+      "title": "Staff Site Reliability Engineer",
+      "location": "Atlanta, GA (Remote)",
+      "startDate": "2026-02",
+      "endDate": null,
+      "summary": "Led infrastructure strategy and SRE practices for the first end-to-end cloud supply chain.",
+      "bullets": [
+        "COMING SOON"
+      ],
+      "skillsUsed": [
+        "GCP",
+        "AWS",
+        "Kubernetes",
+        "Terraform",
+        "GitHub Actions",
+        "Helm",
+        "SRE",
+        "Cost Optimization",
+        "Observability"
+      ]
+    },
     {
       "id": "thescore",
       "company": "theScore",
