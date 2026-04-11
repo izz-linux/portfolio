@@ -21,18 +21,26 @@
       "endDate": null,
       "summary": "Led infrastructure strategy and SRE practices for the first end-to-end cloud supply chain.",
       "bullets": [
-        "COMING SOON"
+        "Extended universal Helm chart serving 30+ microservices with Istio traffic mirroring, ClamAV sidecar injection for pre-upload file scanning to GCS, and numerous configurability enhancements.",
+        "Reduced per-team customization toil by centralizing configuration patterns in the shared chart, accelerating feature rollouts across services.",
+        "Reduced Helm deployment step duration from 60s to 10s across all services, improving CI/CD feedback loops organization-wide.",
+        "Strengthened supply chain security by enforcing SHA pinning across CI workflows and implementing automated workflow auditing using Claude Code skills.",
+        "Led standardization of Redpanda (Kafka) deployment patterns, establishing consistent configurations and operational runbooks across environments.",
+        "Achieved 10x personal productivity gain by pioneering agentic workflows with Claude Code for daily infrastructure development, troubleshooting, and code authoring."
       ],
       "skillsUsed": [
         "GCP",
-        "AWS",
         "Kubernetes",
         "Terraform",
         "GitHub Actions",
         "Helm",
         "SRE",
         "Cost Optimization",
-        "Observability"
+        "Observability",
+        "Claude Code",
+        "Agentic Workflows",
+        "Istio",
+        "Kafka"
       ]
     },
     {
