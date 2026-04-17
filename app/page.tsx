@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { getProfile } from "@/lib/profile";
 import { matchesCertification, matchesExperience } from "@/lib/search";
 import { ANIMATION, LAYOUT, SPACING, TEXT } from "@/lib/constants";
@@ -19,6 +19,7 @@ export default function Home() {
 
   const cardsSectionRef = useRef<HTMLDivElement | null>(null);
   const cardRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const focusCounter = useRef(0);
 
   const filteredExperience = useMemo(() => {
     const sorted = [...profile.experience].sort((a, b) => (a.startDate < b.startDate ? 1 : -1));
@@ -29,16 +30,16 @@ export default function Home() {
     return (profile.certifications ?? []).filter((c) => matchesCertification(c, query));
   }, [profile.certifications, query]);
 
-  // If search filter removes the selected item, clear selection
-  useEffect(() => {
-    if (selectedId && !filteredExperience.some((e) => e.id === selectedId)) {
-      setSelectedId(null);
-    }
-  }, [filteredExperience, selectedId]);
+  // If search filter removes the selected item, treat selection as cleared.
+  // Derived during render — no effect needed.
+  const activeSelectedId = useMemo(
+    () => (selectedId && filteredExperience.some((e) => e.id === selectedId) ? selectedId : null),
+    [filteredExperience, selectedId]
+  );
 
   const onSelectFromTimeline = (id: string) => {
     setSelectedId(id);
-    setFocusKey(String(Date.now())); // bump to force open in ExperienceCard
+    setFocusKey(String(++focusCounter.current)); // bump to force open in ExperienceCard
 
     // First scroll to the cards section
     cardsSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -57,7 +58,7 @@ export default function Home() {
 
   const onSelectCard = (id: string) => {
     setSelectedId(id);
-    setFocusKey(String(Date.now())); // bump to force open in ExperienceCard
+    setFocusKey(String(++focusCounter.current)); // bump to force open in ExperienceCard
   };
 
   return (
@@ -101,7 +102,7 @@ export default function Home() {
         <div className={SPACING.lg.spaceY}>
           {/* Timeline picker */}
           {filteredExperience.length ? (
-            <Timeline items={filteredExperience} selectedId={selectedId} onSelect={onSelectFromTimeline} />
+            <Timeline items={filteredExperience} selectedId={activeSelectedId} onSelect={onSelectFromTimeline} />
           ) : (
             <div className="rounded-md border border-gray-200 bg-white p-4 text-sm text-gray-700 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300">
               {TEXT.NO_MATCHES}
@@ -122,10 +123,10 @@ export default function Home() {
                 <ExperienceCard
                   item={item}
                   query={query}
-                  defaultOpen={idx === 0 && !selectedId}
-                  forceOpen={selectedId === item.id}
+                  defaultOpen={idx === 0 && !activeSelectedId}
+                  forceOpen={activeSelectedId === item.id}
                   focusKey={focusKey}
-                  selected={selectedId === item.id}
+                  selected={activeSelectedId === item.id}
                   onSelect={() => onSelectCard(item.id)}
                 />
               </div>
