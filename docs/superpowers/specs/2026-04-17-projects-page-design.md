@@ -28,8 +28,8 @@ One new route, two new components, one new data file, one new loader, a small nu
 | # | Project | Repo | Media |
 |---|---------|------|-------|
 | 1 | **local-wiki** | `izz-linux/local-wiki` (private) | 1-2 screenshots of the running Mac app; "Source private" note in lieu of repo link |
-| 2 | **terraform-modules** | `izz-linux/terraform-modules` (public) | HCL code snippet (representative module usage) rather than screenshot |
-| 3 | **portfolio** (this site) | `izz-linux/portfolio` (public) | Screenshot of the landing page |
+| 2 | **addressable** | `izz-linux/addressable` (private) | Screenshot of the interactive HTML problems/treemap viewer or ASCII subnet map; "Source private" note |
+| 3 | **terraform-modules** | `izz-linux/terraform-modules` (public) | HCL code snippet (representative module usage) rather than screenshot |
 
 ### Grid projects (minimal tiles)
 
@@ -38,6 +38,7 @@ One new route, two new components, one new data file, one new loader, a small nu
 3. **advent-of-code-2025** — Go algorithmic puzzles
 4. **OTP** — Go one-time-password generator
 5. **find-dupes** — Python duplicate-file finder
+6. **portfolio** — This site (Next.js 16 / React 19 / Tailwind v4)
 
 Grid tiles use generated SVG placeholders (repo language + name on colored background) rather than screenshots — keeps visual weight proportional to content importance.
 
@@ -119,17 +120,54 @@ Images live under `public/projects/`. Naming: `<project-id>.png` (or `.svg`).
 | Project | Asset | Source |
 |---------|-------|--------|
 | local-wiki | `public/projects/local-wiki.png` (1-2 shots) | Screenshot of the running Tauri app via `pnpm tauri dev` in the `local-wiki` repo; capture with macOS `screencapture` or ⌘⇧4 |
+| addressable | `public/projects/addressable.png` | Screenshot of the generated HTML problems viewer or treemap (`bun run report:problems -- --html`); or a terminal capture of the ASCII subnet map |
 | terraform-modules | No image — inline HCL snippet | Pulled from a representative module in the repo |
-| portfolio | `public/projects/portfolio.png` | Browser screenshot at a nice viewport of the deployed site (or local `npm run dev`) |
-| budget-mgmt, InternetMonitor, advent-of-code-2025, OTP, find-dupes | SVG placeholders | Generated: repo language color + name centered. Committed as `public/projects/<id>.svg` |
+| budget-mgmt, InternetMonitor, advent-of-code-2025, OTP, find-dupes, portfolio | SVG placeholders | Generated: repo language color + name centered. Committed as `public/projects/<id>.svg` |
 
 ## Testing
 
-The existing project has no test infrastructure. Scope testing conservatively:
-- `lib/projects.ts` loader tested by importing in Node and checking shape — skipped unless user wants to add Vitest. (Default: skip.)
-- Visual verification in the browser via `npm run dev` is the verification gate (per repo conventions, no automated UI tests).
-- `npm run lint` must pass.
-- `npm run build` must succeed.
+The existing project has no test infrastructure. This feature introduces it.
+
+**Stack:**
+- **Vitest** — fast, Vite-native, no Jest config drag
+- **@testing-library/react** + **@testing-library/jest-dom**
+- **happy-dom** as the test environment (lighter than jsdom, sufficient for these components)
+
+**Config:**
+- `vitest.config.ts` at repo root, setting `environment: "happy-dom"` and `setupFiles: ["./test-setup.ts"]`
+- `test-setup.ts` imports `@testing-library/jest-dom/vitest`
+- `package.json` adds `"test": "vitest"` and `"test:run": "vitest run"` scripts
+- TypeScript `tsconfig.json` updated to include Vitest globals via `types: ["vitest/globals"]` if we opt into globals (otherwise import `describe`/`it`/`expect` per-file — preference: explicit imports)
+
+**Tests to write:**
+
+1. **`lib/projects.test.ts`** (loader)
+   - `getProjects()` returns a non-empty `projects` array
+   - Each project has the required fields (`id`, `name`, `tagline`, `tech`, `featured`)
+   - Featured projects have `media` defined
+   - Projects marked `repoPrivate: true` do not expose a `repo` URL
+
+2. **`components/FeaturedProject.test.tsx`**
+   - Renders name, tagline, description, and all `tech` badges
+   - Image media: renders `<img>` with correct `src` and `alt`
+   - Code media: renders the code block with the correct language label
+   - Private repo: shows "Source private" and does NOT render a repo `<a>`
+   - Public repo: renders repo `<a>` with the correct `href`
+
+3. **`components/ProjectTile.test.tsx`**
+   - Renders name, tagline, and tech badges
+   - Renders SVG placeholder when no `media` is provided
+   - Private repo: no repo link rendered; public repo: link rendered
+
+4. **`components/CodeSnippet.test.tsx`** (thin)
+   - Renders the provided code inside a `<pre>` / `<code>`
+   - Applies the language to the root element as a `data-language` attribute (for targeted testing without coupling to highlighter internals)
+
+**Verification gates before PR:**
+- `npm run test:run` — all tests pass
+- `npm run lint` — passes
+- `npm run build` — succeeds
+- Manual browser check: `npm run dev`, visit `/` and `/projects`, verify dark mode + mobile layout
 
 ## Out of scope for this spec
 
@@ -140,14 +178,25 @@ The existing project has no test infrastructure. Scope testing conservatively:
 
 ## Dependencies to add
 
+**Runtime:**
 - `prism-react-renderer` — syntax highlighting for the terraform-modules code snippet. ~40KB gzipped, MIT-licensed, React-native, no runtime DOM mutation.
+
+**Dev:**
+- `vitest`
+- `@testing-library/react`
+- `@testing-library/jest-dom`
+- `happy-dom`
+- `@vitejs/plugin-react` (required by Vitest to transform TSX)
 
 ## Implementation ordering (for the follow-up plan)
 
-1. Data model + loader (`data/projects.json`, `lib/projects.ts`)
-2. `CodeSnippet` + `FeaturedProject` + `ProjectTile` components
-3. `app/projects/page.tsx` page shell
-4. Asset generation (SVG placeholders + real screenshots)
-5. Nav link in `profile.json`
-6. `npm run lint` + `npm run build` verification
-7. PR against `main`
+1. Test infrastructure (Vitest + @testing-library/react + happy-dom; config; scripts)
+2. Data model + loader with tests (`data/projects.json`, `lib/projects.ts`, `lib/projects.test.ts`)
+3. `CodeSnippet` + tests
+4. `FeaturedProject` + tests
+5. `ProjectTile` + tests
+6. `app/projects/page.tsx` page shell
+7. Asset generation (SVG placeholders + real screenshots for local-wiki and addressable)
+8. Nav link in `profile.json`
+9. `npm run test:run` + `npm run lint` + `npm run build` verification
+10. PR against `main`
