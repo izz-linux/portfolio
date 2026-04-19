@@ -22,7 +22,7 @@ An interactive portfolio and resume website featuring searchable professional ex
 - **Styling**: [Tailwind CSS v4](https://tailwindcss.com) with PostCSS
 - **Fonts**: [Geist Sans & Mono](https://vercel.com/font) via `next/font`
 - **Syntax Highlighting**: [prism-react-renderer](https://github.com/FormidableLabs/prism-react-renderer) for project code snippets
-- **Testing**: [Vitest](https://vitest.dev) + [Testing Library](https://testing-library.com/react) on [happy-dom](https://github.com/capricorn86/happy-dom)
+- **Testing**: [Vitest](https://vitest.dev) + [Testing Library](https://testing-library.com/react) on [happy-dom](https://github.com/capricorn86/happy-dom), with v8 coverage enforced at ≥ 80% on every metric
 - **Package Manager**: [pnpm](https://pnpm.io) (pinned via `packageManager` field)
 - **Build Tool**: [Turbopack](https://turbo.build/pack)
 - **CI/CD**: GitHub Actions with [semantic-release](https://semantic-release.gitbook.io), publishing to Docker Hub and GCP Artifact Registry, deploying to Google Cloud Run
@@ -70,13 +70,32 @@ docker build -t portfolio .
 docker run -p 3000:3000 portfolio
 ```
 
-### Linting and Tests
+### Linting
 
 ```bash
-pnpm lint         # ESLint
-pnpm test:run     # Vitest, single run
-pnpm test         # Vitest, watch mode
+pnpm lint
 ```
+
+See [Testing](#testing) below for the test commands.
+
+## Testing
+
+```bash
+pnpm test           # watch mode
+pnpm test:run       # single run
+pnpm test:coverage  # single run with coverage report
+```
+
+Coverage policy: every metric (statements, branches, functions, lines) must stay ≥ 80%. New work must not lower the baseline.
+
+Current baseline:
+
+| Metric     | Coverage |
+|------------|----------|
+| Statements | 100%     |
+| Branches   | 94.32%   |
+| Functions  | 100%     |
+| Lines      | 100%     |
 
 ## Project Structure
 
@@ -117,6 +136,7 @@ portfolio/
 ├── .github/workflows/
 │   ├── ci.yml                 # Lint + test + build on PRs and main
 │   ├── release.yml            # semantic-release → Docker Hub + GCP AR → Cloud Run
+│   ├── build.yml              # Manual image rebuild for an existing tag (workflow_dispatch)
 │   └── deploy.yml             # Manual Cloud Run redeploy (workflow_dispatch)
 ├── Dockerfile                 # Multi-stage build using pnpm
 ├── .releaserc.json            # semantic-release config
@@ -178,6 +198,8 @@ The `release.yml` workflow runs on every push to `main`:
 3. **publish** — deploys the new image to the `portfolio` Cloud Run service in `us-central1`
 
 `deploy.yml` provides a manual `workflow_dispatch` entry point for redeploying an existing Artifact Registry tag without cutting a new release.
+
+`build.yml` provides a manual `workflow_dispatch` entry point for rebuilding and pushing a Docker image for an existing git tag — useful when a release commit landed but the docker step failed, or when a fresh image is needed for an existing version.
 
 ## Performance
 
