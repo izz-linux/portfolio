@@ -87,9 +87,7 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ env.DOCKERHUB_IMAGE }}:latest
             ${{ env.DOCKERHUB_IMAGE }}:v${{ needs.release.outputs.new_release_version }}
-            ${{ env.GCP_AR_IMAGE }}:latest
             ${{ env.GCP_AR_IMAGE }}:v${{ needs.release.outputs.new_release_version }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
