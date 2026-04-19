@@ -24,18 +24,20 @@ An interactive portfolio and resume website featuring searchable professional ex
 
 ## Getting Started
 
+This project uses [pnpm](https://pnpm.io). Enable it with `corepack enable` if not already active.
+
 ### Development
 
 Install dependencies:
 
 ```bash
-npm install
+pnpm install
 ```
 
 Run the development server:
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to view the application.
@@ -45,13 +47,13 @@ Open [http://localhost:3000](http://localhost:3000) to view the application.
 Build for production:
 
 ```bash
-npm run build
+pnpm build
 ```
 
 Start the production server:
 
 ```bash
-npm start
+pnpm start
 ```
 
 ### Docker
@@ -63,12 +65,12 @@ docker build -t portfolio .
 docker run -p 3000:3000 portfolio
 ```
 
-### Linting
-
-Run ESLint:
+### Linting and Tests
 
 ```bash
-npm run lint
+pnpm lint         # ESLint
+pnpm test:run     # Vitest, single run
+pnpm test         # Vitest, watch mode
 ```
 
 ## Project Structure
