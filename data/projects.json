@@ -19,7 +19,7 @@
       "id": "addressable",
       "name": "addressable",
       "tagline": "Agentic IPAM for multi-project GCP networks",
-      "description": "Scans 20+ GCP projects sharing a 10.0.0.0/8 address space, builds a complete live inventory of allocations, detects 8 classes of CIDR conflicts, and recommends safe CIDRs for new subnets. No database — the source of truth is always live GCP state. Runs as a Claude Code native interface with a standalone CLI fallback.",
+      "description": "Scans all of your GCP projects sharing a 10.0.0.0/8 address space, builds a complete live inventory of allocations, detects 8 classes of CIDR conflicts, and recommends safe CIDRs for new subnets. No database — the source of truth is always live GCP state. Runs as a Claude Code native interface with a standalone CLI fallback.",
       "tech": ["TypeScript", "Bun", "GCP", "Claude Code", "IPAM", "Networking"],
       "repoPrivate": true,
       "featured": true,
