@@ -14,5 +14,11 @@ export default defineConfig({
     globals: false,
     setupFiles: ["./test-setup.ts"],
     include: ["**/*.test.{ts,tsx}"],
+    coverage: {
+      provider: "v8",
+      reporter: ["text", "html"],
+      include: ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}", "lib/**/*.{ts,tsx}"],
+      exclude: ["**/*.test.{ts,tsx}", "app/layout.tsx", "app/sitemap.xml/**"],
+    },
   },
 });
