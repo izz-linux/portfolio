@@ -113,7 +113,7 @@ export default function Home() {
           <div ref={cardsSectionRef} className={SPACING.md.spaceY}>
             <div className="text-sm font-semibold text-gray-900 dark:text-gray-100">{TEXT.EXPERIENCE_TITLE}</div>
 
-            {filteredExperience.map((item, idx) => (
+            {filteredExperience.map((item) => (
               <div
                 key={item.id}
                 ref={(el) => {
@@ -123,7 +123,6 @@ export default function Home() {
                 <ExperienceCard
                   item={item}
                   query={query}
-                  defaultOpen={idx === 0 && !activeSelectedId}
                   forceOpen={activeSelectedId === item.id}
                   focusKey={focusKey}
                   selected={activeSelectedId === item.id}
