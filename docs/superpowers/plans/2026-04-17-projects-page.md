@@ -1327,3 +1327,34 @@ EOF
 - **Placeholder scan:** No `TBD`, `TODO`, or "implement later" placeholders. All code steps include complete code.
 - **Type consistency:** `Project`, `ProjectMedia`, `ProjectsData` types are defined in Task 2 and used consistently by every component. Named exports (`Badge`, `CodeSnippet`, `LanguagePlaceholder`, `FeaturedProject`, `ProjectTile`) align across tasks.
 - **Known limitation surfaced:** HCL highlighted via `bash` token grammar — called out in Task 3.
+
+---
+
+## Resume State (2026-04-18)
+
+Work was paused here and is being handed off to a fresh Claude session launched from the portfolio repo directly. To continue:
+
+> *Continue executing `docs/superpowers/plans/2026-04-17-projects-page.md` using the superpowers:subagent-driven-development skill. Start at Task 3.*
+
+**Branch:** `feature/projects-page` off `main`
+
+**Completed tasks (all committed to `feature/projects-page`):**
+
+| Task | Status | Commit | Notes |
+|------|--------|--------|-------|
+| 1. Test infrastructure (Vitest + Testing Library + happy-dom) | ✅ Done | `1ec6e5f` | Spec + code quality reviews passed |
+| — Pre-existing lint fix (3 React Compiler errors) | ✅ Done | `c42f19d` | Out-of-plan but necessary; `npm run lint` now clean |
+| 2. Projects data model, loader, seed data (9 projects) | ✅ Done | `ee67b17` | Spec + code quality reviews passed; 5 tests green |
+
+**Current state:**
+- Working tree clean
+- All tests passing: `npm run test:run`
+- Lint clean: `npm run lint`
+- Build succeeds: `npm run build`
+
+**Next task:** Task 3 — CodeSnippet component (installs `prism-react-renderer`, creates component + tests). See Task 3 in this plan for exact steps.
+
+**Remaining:** Tasks 3 through 10.
+
+**Known carryover items:**
+- Two minor code-review suggestions from Task 2 are noted but deliberately not addressed (low value, not required to proceed): empty-string `description` on grid projects could be omitted entirely, and `terraform-modules` media could set `language: "hcl"` instead of `"bash"` with the fallback in `CodeSnippet`. Leave unless the pattern becomes a real problem.
