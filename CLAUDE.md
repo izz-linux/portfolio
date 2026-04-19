@@ -16,7 +16,12 @@ pnpm start          # Start production server
 pnpm lint           # Run ESLint
 pnpm test           # Run Vitest in watch mode
 pnpm test:run       # Run Vitest once
+pnpm test:coverage  # Run Vitest once with coverage report
 ```
+
+### Testing Standards
+
+**Test coverage must never fall below 80%** on any metric (statements, branches, functions, lines). When adding new code, write tests alongside it. When modifying existing untested surfaces, bring them toward the threshold. A coverage drop below 80% is a merge blocker, not a nit. The current baseline is below this — new work must not lower it, and coverage should trend up over time.
 
 This project uses pnpm (pinned via `packageManager` in package.json). Enable it with `corepack enable` if not already active.
 
