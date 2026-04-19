@@ -36,4 +36,13 @@ describe("Lightbox", () => {
     fireEvent.keyDown(document, { key: "Escape" });
     expect(onClose).toHaveBeenCalledTimes(1);
   });
+
+  it("does not call onClose for non-Escape keys", () => {
+    const onClose = vi.fn();
+    render(<Lightbox src="/x.png" alt="x" onClose={onClose} />);
+    fireEvent.keyDown(document, { key: "Enter" });
+    fireEvent.keyDown(document, { key: "a" });
+    fireEvent.keyDown(document, { key: " " });
+    expect(onClose).not.toHaveBeenCalled();
+  });
 });
