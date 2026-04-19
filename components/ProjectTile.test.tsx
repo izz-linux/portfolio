@@ -14,9 +14,11 @@ const baseProject: Project = {
 describe("ProjectTile", () => {
   it("renders name, tagline, and tech badges", () => {
     render(<ProjectTile project={baseProject} />);
-    expect(screen.getByText("Demo")).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { level: 3, name: "Demo" }),
+    ).toBeInTheDocument();
     expect(screen.getByText("A demo project")).toBeInTheDocument();
-    expect(screen.getByText("Go")).toBeInTheDocument();
+    expect(screen.getAllByText("Go").length).toBeGreaterThan(0);
   });
 
   it("renders a LanguagePlaceholder SVG when no media is provided", () => {

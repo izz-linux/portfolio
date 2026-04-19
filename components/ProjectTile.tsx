@@ -14,17 +14,15 @@ export function ProjectTile({ project }: ProjectTileProps) {
     <article className="flex flex-col gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-4 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
       <div>
         {project.media?.kind === "image" ? (
-          // eslint-disable-next-line @next/next/no-img-element
           <img
             src={project.media.src}
             alt={project.media.alt}
             className="w-full h-32 object-cover rounded-md"
           />
         ) : (
-            <LanguagePlaceholder
+          <LanguagePlaceholder
             name={project.name}
             language={project.tech[0] ?? "Code"}
-            hideText
           />
         )}
       </div>

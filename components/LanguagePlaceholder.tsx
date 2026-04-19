@@ -16,11 +16,9 @@ const DEFAULT_COLOR = "#4b5563"; // gray-600
 export type LanguagePlaceholderProps = {
   name: string;
   language: string;
-  /** When true, suppresses the SVG text labels (use when surrounding UI already shows these values). */
-  hideText?: boolean;
 };
 
-export function LanguagePlaceholder({ name, language, hideText = false }: LanguagePlaceholderProps) {
+export function LanguagePlaceholder({ name, language }: LanguagePlaceholderProps) {
   const fill = LANG_COLORS[language] ?? DEFAULT_COLOR;
   return (
     <svg
@@ -31,32 +29,28 @@ export function LanguagePlaceholder({ name, language, hideText = false }: Langua
       aria-label={`${name} (${language})`}
     >
       <rect width="320" height="160" fill={fill} />
-      {!hideText && (
-        <>
-          <text
-            x="50%"
-            y="45%"
-            textAnchor="middle"
-            fontFamily="ui-sans-serif, system-ui, -apple-system"
-            fontSize="22"
-            fontWeight="700"
-            fill="#ffffff"
-          >
-            {name}
-          </text>
-          <text
-            x="50%"
-            y="68%"
-            textAnchor="middle"
-            fontFamily="ui-sans-serif, system-ui, -apple-system"
-            fontSize="12"
-            fill="#ffffff"
-            opacity="0.85"
-          >
-            {language}
-          </text>
-        </>
-      )}
+      <text
+        x="50%"
+        y="45%"
+        textAnchor="middle"
+        fontFamily="ui-sans-serif, system-ui, -apple-system"
+        fontSize="22"
+        fontWeight="700"
+        fill="#ffffff"
+      >
+        {name}
+      </text>
+      <text
+        x="50%"
+        y="68%"
+        textAnchor="middle"
+        fontFamily="ui-sans-serif, system-ui, -apple-system"
+        fontSize="12"
+        fill="#ffffff"
+        opacity="0.85"
+      >
+        {language}
+      </text>
     </svg>
   );
 }
