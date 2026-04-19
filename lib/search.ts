@@ -7,8 +7,9 @@ export function normalize(s: string): string {
 export function formatDateRange(start: string, end: string | null): string {
   const fmt = (ym: string) => {
     const [y, m] = ym.split("-").map(Number);
-    const date = new Date(y, (m ?? 1) - 1, 1);
-    return date.toLocaleString(undefined, { month: "short", year: "numeric" });
+    // Use `||` (not `??`) so NaN from malformed input (e.g. "2024-", "2024-abc") also falls back to January.
+    const date = new Date(y, (m || 1) - 1, 1);
+    return date.toLocaleString("en-US", { month: "short", year: "numeric" });
   };
   return `${fmt(start)} — ${end ? fmt(end) : "Present"}`;
 }
