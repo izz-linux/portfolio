@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { FeaturedProject } from "@/components/FeaturedProject";
 import type { Project } from "@/lib/projects";
 
@@ -68,5 +68,30 @@ describe("FeaturedProject", () => {
     render(<FeaturedProject project={demoProject} />);
     const link = screen.getByRole("link", { name: /live/i }) as HTMLAnchorElement;
     expect(link.getAttribute("href")).toBe("https://example.com");
+  });
+
+  it("opens a lightbox when the image is clicked and closes it via the Close button", () => {
+    render(<FeaturedProject project={baseProject} />);
+    expect(screen.queryByRole("dialog")).toBeNull();
+
+    fireEvent.click(screen.getByRole("button", { name: /enlarge image: demo screenshot/i }));
+    expect(screen.getByRole("dialog")).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: /close preview/i }));
+    expect(screen.queryByRole("dialog")).toBeNull();
+  });
+
+  it("renders an image caption when provided", () => {
+    const withCaption: Project = {
+      ...baseProject,
+      media: {
+        kind: "image",
+        src: "/projects/demo.png",
+        alt: "Demo screenshot",
+        caption: "Production dashboard",
+      },
+    };
+    render(<FeaturedProject project={withCaption} />);
+    expect(screen.getByText("Production dashboard")).toBeInTheDocument();
   });
 });

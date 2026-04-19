@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { ProjectTile } from "@/components/ProjectTile";
 import type { Project } from "@/lib/projects";
 
@@ -50,5 +50,20 @@ describe("ProjectTile", () => {
     const priv: Project = { ...baseProject, repoPrivate: true };
     render(<ProjectTile project={priv} />);
     expect(screen.queryByRole("link", { name: /source/i })).toBeNull();
+  });
+
+  it("opens a lightbox when the image is clicked and closes it via the Close button", () => {
+    const withImg: Project = {
+      ...baseProject,
+      media: { kind: "image", src: "/projects/demo.png", alt: "demo shot" },
+    };
+    render(<ProjectTile project={withImg} />);
+    expect(screen.queryByRole("dialog")).toBeNull();
+
+    fireEvent.click(screen.getByRole("button", { name: /enlarge image: demo shot/i }));
+    expect(screen.getByRole("dialog")).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: /close preview/i }));
+    expect(screen.queryByRole("dialog")).toBeNull();
   });
 });
