@@ -1,0 +1,103 @@
+{
+  "projects": [
+    {
+      "id": "local-wiki",
+      "name": "local-wiki",
+      "tagline": "Local-first Notion alternative for macOS",
+      "description": "A Tauri + React + Rust desktop app that treats a folder of plain GFM markdown files as your knowledge base. Rich TipTap editor, wiki-style [[links]], folder-as-hierarchy navigation, and zero lock-in — your notes stay on disk. Built mostly via an agentic Claude Code workflow.",
+      "tech": ["Tauri", "React", "TypeScript", "Rust", "TipTap", "Vitest"],
+      "repoPrivate": true,
+      "featured": true,
+      "media": {
+        "kind": "image",
+        "src": "/projects/local-wiki.png",
+        "alt": "local-wiki editor with sidebar, TipTap editor, and wiki-link suggestion popup",
+        "caption": "Editor with wiki-link autocomplete and folder-as-hierarchy navigation"
+      }
+    },
+    {
+      "id": "addressable",
+      "name": "addressable",
+      "tagline": "Agentic IPAM for multi-project GCP networks",
+      "description": "Scans 20+ GCP projects sharing a 10.0.0.0/8 address space, builds a complete live inventory of allocations, detects 8 classes of CIDR conflicts, and recommends safe CIDRs for new subnets. No database — the source of truth is always live GCP state. Runs as a Claude Code native interface with a standalone CLI fallback.",
+      "tech": ["TypeScript", "Bun", "GCP", "Claude Code", "IPAM", "Networking"],
+      "repoPrivate": true,
+      "featured": true,
+      "media": {
+        "kind": "image",
+        "src": "/projects/addressable.png",
+        "alt": "addressable HTML report showing CIDR block utilization and detected conflicts",
+        "caption": "HTML report viewer — block utilization and detected conflicts"
+      }
+    },
+    {
+      "id": "terraform-modules",
+      "name": "terraform-modules",
+      "tagline": "Reusable HCL modules for everyday cloud infra",
+      "description": "A collection of small, opinionated Terraform modules I reach for across projects — thin wrappers that codify patterns I've found worth standardizing rather than re-deriving each time.",
+      "tech": ["Terraform", "HCL", "AWS", "GCP", "Infrastructure as Code"],
+      "repo": "https://github.com/izz-linux/terraform-modules",
+      "featured": true,
+      "media": {
+        "kind": "code",
+        "language": "bash",
+        "code": "module \"vpc\" {\n  source  = \"github.com/izz-linux/terraform-modules//aws/vpc\"\n  name    = \"prod\"\n  cidr    = \"10.20.0.0/16\"\n  azs     = [\"us-east-1a\", \"us-east-1b\", \"us-east-1c\"]\n  enable_flow_logs = true\n}",
+        "caption": "Sample module usage"
+      }
+    },
+    {
+      "id": "budget-mgmt",
+      "name": "budget-mgmt",
+      "tagline": "Personal finance app replacing my old Excel workflow",
+      "description": "",
+      "tech": ["Go", "Node.js", "TypeScript"],
+      "repo": "https://github.com/izz-linux/budget-mgmt",
+      "featured": false
+    },
+    {
+      "id": "internet-monitor",
+      "name": "InternetMonitor",
+      "tagline": "Connectivity monitoring from an internal Linux host",
+      "description": "",
+      "tech": ["Shell", "Linux", "Monitoring"],
+      "repo": "https://github.com/izz-linux/InternetMonitor",
+      "featured": false
+    },
+    {
+      "id": "advent-of-code-2025",
+      "name": "advent-of-code-2025",
+      "tagline": "My 2025 Advent of Code solutions in Go",
+      "description": "",
+      "tech": ["Go", "Algorithms"],
+      "repo": "https://github.com/izz-linux/advent-of-code-2025",
+      "featured": false
+    },
+    {
+      "id": "otp",
+      "name": "OTP",
+      "tagline": "Go one-time-password generator (TOTP/HOTP)",
+      "description": "",
+      "tech": ["Go", "Cryptography", "Security"],
+      "repo": "https://github.com/izz-linux/OTP",
+      "featured": false
+    },
+    {
+      "id": "find-dupes",
+      "name": "find-dupes",
+      "tagline": "Tree-walking duplicate-file finder in Python",
+      "description": "",
+      "tech": ["Python", "CLI"],
+      "repo": "https://github.com/izz-linux/find-dupes",
+      "featured": false
+    },
+    {
+      "id": "portfolio",
+      "name": "portfolio",
+      "tagline": "This site — Next.js 16, React 19, Tailwind v4",
+      "description": "",
+      "tech": ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+      "repo": "https://github.com/izz-linux/portfolio",
+      "featured": false
+    }
+  ]
+}

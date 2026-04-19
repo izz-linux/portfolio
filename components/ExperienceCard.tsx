@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import type { ExperienceItem } from "@/lib/profile";
 import { formatDateRange, highlightParts } from "@/lib/search";
 import { Badge } from "@/components/Badge";
@@ -43,18 +43,19 @@ export default function ExperienceCard({
   onSelect
 }: Props) {
   const [open, setOpen] = useState(!!defaultOpen);
+  // Track previous prop values in state so we can derive open during render
+  // without effects (React Compiler compliant pattern).
+  const [prevFocusKey, setPrevFocusKey] = useState(focusKey);
+  const [prevSelected, setPrevSelected] = useState(selected);
 
-  // Open when forceOpen becomes true
-  useEffect(() => {
-    if (forceOpen) setOpen(true);
-  }, [forceOpen, focusKey]);
-
-  // Close when card becomes unselected
-  useEffect(() => {
-    if (!selected && open) {
-      setOpen(false);
-    }
-  }, [selected, open]);
+  if (focusKey !== prevFocusKey) {
+    setPrevFocusKey(focusKey);
+    if (forceOpen && !open) setOpen(true);
+  }
+  if (selected !== prevSelected) {
+    setPrevSelected(selected);
+    if (!selected && open) setOpen(false);
+  }
 
   const cardClass = selected
     ? `${SELECTION.CARD_BORDER_SELECTED} ${SELECTION.CARD_SHADOW_SELECTED} ${SELECTION.CARD_RING_SELECTED} transform-gpu scale-[${ANIMATION.CARD_SELECTED_SCALE}]`
