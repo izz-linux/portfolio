@@ -41,11 +41,18 @@ export default function Keywords({ keywords, query, onPick }: Props) {
       </div>
 
       <div className={`flex flex-wrap ${SPACING.xs.gap}`}>
-        {filtered.map((k) => (
-          <Badge key={k} onClick={() => onPick(k)}>
-            <Highlight text={k} query={query} />
-          </Badge>
-        ))}
+        {filtered.map((k) => {
+          const isSelected = k.toLowerCase() === q;
+          return (
+            <Badge
+              key={k}
+              variant={isSelected ? "selected" : "default"}
+              onClick={() => onPick(isSelected ? "" : k)}
+            >
+              <Highlight text={k} query={query} />
+            </Badge>
+          );
+        })}
       </div>
     </div>
   );
