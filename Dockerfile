@@ -1,19 +1,16 @@
 FROM node:20-alpine AS deps
 WORKDIR /app
+RUN corepack enable
 
-COPY package.json ./
-# If lockfile exists, copy it; if not, that's fine.
-# (We do it via a second COPY that won't mention a missing filename.)
-# So: comment this in ONLY if you have the file.
-# COPY package-lock.json ./
-
-RUN npm install
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 
 FROM node:20-alpine AS builder
 WORKDIR /app
+RUN corepack enable
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-RUN npm run build
+RUN pnpm run build
 
 FROM node:20-alpine AS runner
 WORKDIR /app
@@ -27,4 +24,3 @@ COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 
 CMD ["node_modules/.bin/next", "start", "-p", "3000"]
-

@@ -10,19 +10,21 @@ Interactive portfolio/resume website for Izz Noland built with Next.js 16 (App R
 
 ### Core Development
 ```bash
-npm run dev         # Start development server at http://localhost:3000
-npm run build       # Build for production
-npm start           # Start production server
-npm run lint        # Run ESLint
+pnpm dev            # Start development server at http://localhost:3000
+pnpm build          # Build for production
+pnpm start          # Start production server
+pnpm lint           # Run ESLint
+pnpm test           # Run Vitest in watch mode
+pnpm test:run       # Run Vitest once
 ```
+
+This project uses pnpm (pinned via `packageManager` in package.json). Enable it with `corepack enable` if not already active.
 
 ### Docker
 ```bash
 docker build -t portfolio .                    # Build container
 docker run -p 3000:3000 portfolio             # Run container
 ```
-
-Note: The Dockerfile expects `package-lock.json` to be commented out if not present.
 
 ## Architecture
 
