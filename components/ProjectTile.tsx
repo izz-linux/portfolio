@@ -1,8 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import type { Project } from "@/lib/projects";
 import { Badge } from "@/components/Badge";
 import { LanguagePlaceholder } from "@/components/LanguagePlaceholder";
+import { Lightbox } from "@/components/Lightbox";
 import { SPACING } from "@/lib/constants";
 
 export type ProjectTileProps = {
@@ -10,15 +12,25 @@ export type ProjectTileProps = {
 };
 
 export function ProjectTile({ project }: ProjectTileProps) {
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const image = project.media?.kind === "image" ? project.media : null;
+
   return (
     <article className="flex flex-col gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-4 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
       <div>
-        {project.media?.kind === "image" ? (
-          <img
-            src={project.media.src}
-            alt={project.media.alt}
-            className="w-full h-32 object-cover rounded-md"
-          />
+        {image ? (
+          <button
+            type="button"
+            onClick={() => setLightboxOpen(true)}
+            className="block w-full cursor-zoom-in"
+            aria-label={`Enlarge image: ${image.alt}`}
+          >
+            <img
+              src={image.src}
+              alt={image.alt}
+              className="w-full h-32 object-cover rounded-md"
+            />
+          </button>
         ) : (
           <LanguagePlaceholder
             name={project.name}
@@ -67,6 +79,10 @@ export function ProjectTile({ project }: ProjectTileProps) {
           </a>
         ) : null}
       </div>
+
+      {image && lightboxOpen ? (
+        <Lightbox src={image.src} alt={image.alt} onClose={() => setLightboxOpen(false)} />
+      ) : null}
     </article>
   );
 }
