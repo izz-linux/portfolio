@@ -68,9 +68,12 @@ export default function Timeline({ items, selectedId, onSelect }: Props) {
 
 
   const minYear = Math.floor(minM / 12);
-  // Cap the label range at the current month so the top headroom never renders
-  // a future year on the axis.
-  const maxYear = Math.floor(Math.min(maxM, currentMonthNumber) / 12);
+  // Extend the label range into the top headroom so the upcoming year's tick
+  // anchors the top of the axis. The moving "Present" marker sits below it and
+  // advances toward it as months pass.
+  const maxYear = Math.floor(maxM / 12);
+
+  const presentY = yForMonth(currentMonthNumber);
 
   const sorted = [...items].sort((a, b) => (a.startDate < b.startDate ? 1 : -1));
 
@@ -104,6 +107,25 @@ export default function Timeline({ items, selectedId, onSelect }: Props) {
             </div>
           );
         })}
+
+        {/* Present marker: sits at the current month and advances toward the
+            upcoming-year tick above it as time passes. */}
+        <div className="absolute left-0 right-0" style={{ top: presentY }}>
+          <div
+            className="absolute h-px bg-blue-400/70 dark:bg-blue-500/70"
+            style={{ left: AXIS_X, width: LABEL_X - AXIS_X, top: 0 }}
+          />
+          <div
+            className="absolute h-2 w-2 rounded-full bg-blue-500 dark:bg-blue-400"
+            style={{ left: AXIS_X - YEAR_LABEL_OFFSET, top: -YEAR_LABEL_OFFSET }}
+          />
+          <div
+            className="absolute text-xs font-medium text-blue-500 dark:text-blue-400"
+            style={{ left: 0, top: YEAR_LABEL_TOP_OFFSET, width: AXIS_X - 10, textAlign: "right" }}
+          >
+            Now
+          </div>
+        </div>
 
         {sorted.map((e) => {
           const startM = ymToNumber(e.startDate);

@@ -70,8 +70,10 @@ export const TIMELINE = {
   LABEL_VERTICAL_OFFSET: 16,
   LABEL_WIDTH_OFFSET: 160,
 
-  // Date range padding (in months)
-  DATE_PADDING_MONTHS: 12,
+  // Date range padding (in months). The top headroom holds the upcoming-year
+  // tick and the moving "Present" marker, so it stays under a full year to keep
+  // the gap intentional rather than cavernous.
+  DATE_PADDING_MONTHS: 9,
 } as const;
 
 // Animation & Interaction

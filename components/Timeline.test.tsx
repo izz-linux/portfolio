@@ -102,7 +102,7 @@ describe("Timeline", () => {
     expect(text).toContain(yy(currentYear));
   });
 
-  it("year axis does NOT contain future years even when endDate is in future", () => {
+  it("a far-future endDate cannot stretch the axis beyond the present headroom", () => {
     const futureItems: ExperienceItem[] = [
       {
         id: "f",
@@ -121,8 +121,16 @@ describe("Timeline", () => {
       />
     );
     const text = container.textContent ?? "";
-    expect(text).not.toContain(yy(currentYear + 1));
+    // The upcoming-year tick may appear as headroom above "Now", but a
+    // future-dated endDate must never push the axis two years ahead.
     expect(text).not.toContain(yy(currentYear + 2));
+  });
+
+  it("renders a moving 'Now' marker for the current month", () => {
+    const { container } = render(
+      <Timeline items={items} selectedId={null} onSelect={() => {}} />
+    );
+    expect(container.textContent ?? "").toContain("Now");
   });
 
   // Collect the set of classNames for a button and its descendants.
