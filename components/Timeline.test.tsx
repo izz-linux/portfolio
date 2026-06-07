@@ -126,11 +126,11 @@ describe("Timeline", () => {
     expect(text).not.toContain(yy(currentYear + 2));
   });
 
-  it("renders a moving 'Now' marker for the current month", () => {
+  it("renders a moving 'Present' marker for the current month", () => {
     const { container } = render(
       <Timeline items={items} selectedId={null} onSelect={() => {}} />
     );
-    expect(container.textContent ?? "").toContain("Now");
+    expect(container.textContent ?? "").toContain("Present");
   });
 
   // Collect the set of classNames for a button and its descendants.

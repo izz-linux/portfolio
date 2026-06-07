@@ -120,10 +120,10 @@ export default function Timeline({ items, selectedId, onSelect }: Props) {
             style={{ left: AXIS_X - YEAR_LABEL_OFFSET, top: -YEAR_LABEL_OFFSET }}
           />
           <div
-            className="absolute text-xs font-medium text-blue-500 dark:text-blue-400"
-            style={{ left: 0, top: YEAR_LABEL_TOP_OFFSET, width: AXIS_X - 10, textAlign: "right" }}
+            className="absolute whitespace-nowrap text-xs font-medium text-blue-500 dark:text-blue-400"
+            style={{ left: AXIS_X + 8, top: YEAR_LABEL_TOP_OFFSET }}
           >
-            Now
+            Present
           </div>
         </div>
 
