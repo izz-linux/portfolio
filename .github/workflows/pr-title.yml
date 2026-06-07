@@ -1,0 +1,38 @@
+name: PR Title
+
+# Squash merges use the PR title as the commit subject on main, and that subject
+# is what semantic-release reads to decide the next version. A non-conventional
+# title (e.g. "updated timeline math") produces no release and therefore no
+# deploy — silently. This guard fails the PR until the title is conventional so
+# feat/fix changes can't slip onto main unversioned and undeployed.
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+permissions:
+  contents: read
+
+jobs:
+  lint-title:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate Conventional Commits title
+        # Title is passed via env (never interpolated into the script) so a
+        # crafted PR title cannot inject shell commands.
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          echo "PR title: $PR_TITLE"
+          pattern='^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([a-z0-9 ._,/-]+\))?!?: .+'
+          if echo "$PR_TITLE" | grep -qE "$pattern"; then
+            echo "✓ Title follows Conventional Commits"
+          else
+            {
+              echo "::error::PR title must follow Conventional Commits."
+              echo "Example: 'feat(timeline): add moving Present marker'"
+              echo "Allowed types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert."
+              echo "Note: only 'feat' (minor) and 'fix' (patch) cut a release and deploy to Cloud Run."
+            } >&2
+            exit 1
+          fi
