@@ -121,7 +121,9 @@ export default function Timeline({ items, selectedId, onSelect }: Props) {
           />
           <div
             className="absolute whitespace-nowrap text-xs font-medium text-blue-500 dark:text-blue-400"
-            style={{ left: AXIS_X + 8, top: YEAR_LABEL_TOP_OFFSET }}
+            // Lift the label a full line-height above the marker so the line
+            // rides under it instead of crossing through the text.
+            style={{ left: AXIS_X + 8, top: -16 }}
           >
             Present
           </div>
