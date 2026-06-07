@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import Timeline from "@/components/Timeline";
+import { TIMELINE } from "@/lib/constants";
 import type { ExperienceItem } from "@/lib/profile";
 
 const now = new Date();
@@ -161,6 +162,30 @@ describe("Timeline", () => {
     const aClasses = classNamesOf(btnA).join("|");
     const bClasses = classNamesOf(btnB).join("|");
     expect(aClasses).toBe(bClasses);
+  });
+
+  it("ongoing position leaves headroom above its bar so the present edge can advance", () => {
+    const onlyCurrent: ExperienceItem[] = [
+      {
+        id: "b",
+        company: "Globex",
+        title: "Senior Engineer",
+        startDate: `${currentYear - 1}-07`,
+        endDate: null,
+        bullets: [],
+      },
+    ];
+    render(
+      <Timeline items={onlyCurrent} selectedId={null} onSelect={() => {}} />
+    );
+    const btn = screen.getByRole("button", {
+      name: "Select Senior Engineer at Globex",
+    });
+    // The first inner div is the bar; its top offset should sit below the
+    // chart's top edge, leaving room for the present to advance over time.
+    const bar = btn.querySelector("div") as HTMLElement;
+    const top = parseFloat(bar.style.top);
+    expect(top).toBeGreaterThan(TIMELINE.TOP_PAD);
   });
 
   it("renders with empty items array and no buttons", () => {

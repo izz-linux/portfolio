@@ -44,9 +44,15 @@ export default function Timeline({ items, selectedId, onSelect }: Props) {
   const starts = items.map((e) => ymToNumber(e.startDate));
   const ends = items.map((e) => ymToNumber(e.endDate ?? nowYm));
 
+  // Most recent real endpoint, never beyond the current month so a future-dated
+  // endDate can't stretch the scale.
+  const latestEnd = Math.min(Math.max(...ends), currentMonthNumber);
+
+  // Symmetric padding: headroom both below the earliest start and above the
+  // latest endpoint. The top headroom keeps the present edge below the top of
+  // the chart so an ongoing position visibly advances as months pass.
   const minM = Math.min(...starts) - DATE_PADDING_MONTHS;
-  // Cap maxM at current month to prevent showing future years
-  const maxM = Math.min(Math.max(...ends) + DATE_PADDING_MONTHS, currentMonthNumber);
+  const maxM = latestEnd + DATE_PADDING_MONTHS;
 
   const span = Math.max(1, maxM - minM);
   const yearsSpan = Math.ceil(span / 12);
@@ -62,7 +68,9 @@ export default function Timeline({ items, selectedId, onSelect }: Props) {
 
 
   const minYear = Math.floor(minM / 12);
-  const maxYear = Math.floor(maxM / 12);
+  // Cap the label range at the current month so the top headroom never renders
+  // a future year on the axis.
+  const maxYear = Math.floor(Math.min(maxM, currentMonthNumber) / 12);
 
   const sorted = [...items].sort((a, b) => (a.startDate < b.startDate ? 1 : -1));
 
