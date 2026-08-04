@@ -125,7 +125,7 @@ export default function Timeline({ items, selectedId, onSelect }: Props) {
             // rides under it instead of crossing through the text.
             style={{ left: AXIS_X + 8, top: -16 }}
           >
-            Present
+            now()
           </div>
         </div>
 
@@ -188,4 +188,3 @@ export default function Timeline({ items, selectedId, onSelect }: Props) {
     </div>
   );
 }
-
