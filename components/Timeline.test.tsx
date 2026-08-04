@@ -130,7 +130,7 @@ describe("Timeline", () => {
     const { container } = render(
       <Timeline items={items} selectedId={null} onSelect={() => {}} />
     );
-    expect(container.textContent ?? "").toContain("Present");
+    expect(container.textContent ?? "").toContain("now");
   });
 
   // Collect the set of classNames for a button and its descendants.
