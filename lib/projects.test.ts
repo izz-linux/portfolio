@@ -20,15 +20,20 @@ describe("getProjects", () => {
 
   it("featured projects have media defined", () => {
     const featured = getProjects().projects.filter((p) => p.featured);
-    expect(featured.length).toBe(3);
+    expect(featured.length).toBe(4);
     for (const p of featured) {
       expect(p.media).toBeDefined();
     }
   });
 
-  it("featured set is exactly local-wiki, addressable, terraform-modules", () => {
+  it("featured set is exactly drovr, local-wiki, addressable, terraform-modules", () => {
     const ids = getProjects().projects.filter((p) => p.featured).map((p) => p.id).sort();
-    expect(ids).toEqual(["addressable", "local-wiki", "terraform-modules"]);
+    expect(ids).toEqual(["addressable", "drovr", "local-wiki", "terraform-modules"]);
+  });
+
+  it("drovr is the first featured project", () => {
+    const featured = getProjects().projects.filter((p) => p.featured);
+    expect(featured[0].id).toBe("drovr");
   });
 
   it("private repos do not expose a repo url", () => {
