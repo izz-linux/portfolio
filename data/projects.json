@@ -1,6 +1,21 @@
 {
   "projects": [
     {
+      "id": "drovr",
+      "name": "drovr",
+      "tagline": "Open-source macOS cockpit for orchestrating Claude Code agents",
+      "description": "Built out of a personal need to work faster and see what's going on across multiple tasks and projects at once. A Tauri + Svelte desktop app where you pull up a Jira ticket, hand it to one agent or a group led by an orchestrator, and review the results. One inbox collects every agent's decisions, proposed commands, and permission requests; agents coordinate with each other over a shared message bus; and HTML reports, diffs, and an optional ticket workflow keep the work visible end to end. Signed, notarized releases, MIT licensed.",
+      "tech": ["Tauri", "Rust", "Svelte", "TypeScript", "SQLite", "Claude Code", "MCP"],
+      "repo": "https://github.com/izz-linux/drovr",
+      "featured": true,
+      "media": {
+        "kind": "image",
+        "src": "/projects/drovr.png",
+        "alt": "drovr Agents view showing an orchestrator agent's streamed output as it coordinates cleanup and restructure workers",
+        "caption": "Agents view — an orchestrator coordinating its workers, with approvals routed to the inbox"
+      }
+    },
+    {
       "id": "local-wiki",
       "name": "local-wiki",
       "tagline": "Local-first Notion alternative for macOS",

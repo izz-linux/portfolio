@@ -20,11 +20,18 @@ describe("ProjectsPage", () => {
     ).toBeInTheDocument();
   });
 
-  it("renders all 3 featured projects", () => {
+  it("renders all 4 featured projects", () => {
     render(<ProjectsPage />);
+    expect(screen.getByText("drovr")).toBeInTheDocument();
     expect(screen.getByText("local-wiki")).toBeInTheDocument();
     expect(screen.getByText("addressable")).toBeInTheDocument();
     expect(screen.getByText("terraform-modules")).toBeInTheDocument();
+  });
+
+  it("renders drovr as the first featured project", () => {
+    render(<ProjectsPage />);
+    const headings = screen.getAllByRole("heading", { level: 3 });
+    expect(headings[0]).toHaveTextContent("drovr");
   });
 
   it("renders all 6 grid projects", () => {
