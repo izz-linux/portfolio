@@ -5,8 +5,7 @@
     { "label": "Email", "href": "mailto:izz@linux.com" },
     { "label": "Projects", "href": "/projects" },
     { "label": "LinkedIn", "target": "_blank", "rel": "noopener noreferrer", "href": "https://www.linkedin.com/in/izznoland/" },
-    { "label": "GitHub", "target": "_blank", "rel": "noopener noreferrer", "href": "https://github.com/izz-linux" },
-    { "label": "Personal Site", "target": "_blank", "rel": "noopener noreferrer", "href": "https://izznoland.dev" }
+    { "label": "GitHub", "target": "_blank", "rel": "noopener noreferrer", "href": "https://github.com/izz-linux" }
   ],
   "summary": [
     "Platform Engineering, DevOps, and SRE Expert with 20 years of experience managing large-scale cloud infrastructure, Kubernetes platforms, and Infrastructure as Code.",

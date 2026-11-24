@@ -21,7 +21,7 @@ export default function ProjectsPage() {
         <div>
           <Link href="/" className="inline-block">
             <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-              {profile.name}
+              {profile.name} — Engineering Projects
             </h1>
           </Link>
           <div className="text-sm text-gray-600 dark:text-gray-400">

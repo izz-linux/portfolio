@@ -11,6 +11,7 @@ export type Project = {
   description?: string;
   tech: string[];
   repo?: string;
+  repoLabel?: string;
   repoPrivate?: boolean;
   demo?: string;
   featured: boolean;
