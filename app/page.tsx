@@ -2,6 +2,7 @@
 
 import { useMemo, useRef, useState } from "react";
 import { getProfile } from "@/lib/profile";
+import { buildProfilePage, buildWebSite, serializeJsonLd } from "@/lib/structured-data";
 import { matchesCertification, matchesExperience } from "@/lib/search";
 import { ANIMATION, LAYOUT, SPACING, TEXT } from "@/lib/constants";
 import SearchBar from "@/components/SearchBar";
@@ -63,10 +64,17 @@ export default function Home() {
 
   return (
     <main className={`mx-auto ${LAYOUT.MAX_WIDTH} ${LAYOUT.PAGE_PADDING_X} ${LAYOUT.PAGE_PADDING_Y}`}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd([buildWebSite(profile), buildProfilePage(profile)]) }}
+      />
       <header className={SPACING.sm.spaceY}>
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">{profile.name}</h1>
-          <div className="text-sm text-gray-600 dark:text-gray-400">{profile.headline}</div>
+          <h1>
+            <span className="text-2xl font-bold text-gray-900 dark:text-gray-100">{profile.name}</span>
+            <span className="sr-only"> — </span>
+            <span className="block text-sm text-gray-600 dark:text-gray-400">{profile.headline}</span>
+          </h1>
         </div>
 
         {profile.links?.length ? (

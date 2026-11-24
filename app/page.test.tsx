@@ -61,6 +61,11 @@ describe("Home page", () => {
     expect(expanded).toHaveLength(0);
   });
 
+  it("includes the headline in the h1", () => {
+    render(<Page />);
+    expect(screen.getByRole("heading", { level: 1 }).textContent).toBe("Test User — Test Headline");
+  });
+
   it("renders the first summary paragraph", () => {
     render(<Page />);
     expect(screen.getByText("A brief summary.")).toBeTruthy();

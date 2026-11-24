@@ -78,7 +78,7 @@ export function FeaturedProject({ project }: FeaturedProjectProps) {
               rel="noopener noreferrer"
               className="underline decoration-gray-300 underline-offset-4 hover:decoration-gray-500 dark:decoration-gray-600 dark:hover:decoration-gray-400"
             >
-              Source
+              {project.repoLabel ?? "Source"}
             </a>
           ) : null}
           {project.repoPrivate ? (

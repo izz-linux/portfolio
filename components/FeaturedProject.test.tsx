@@ -60,6 +60,17 @@ describe("FeaturedProject", () => {
     expect(link.getAttribute("href")).toBe("https://github.com/izz-linux/demo");
   });
 
+  it("uses repoLabel as the repo link text when provided", () => {
+    const labelled: Project = {
+      ...baseProject,
+      repo: "https://github.com/izz-linux/demo",
+      repoLabel: "Demo control plane",
+    };
+    render(<FeaturedProject project={labelled} />);
+    expect(screen.getByRole("link", { name: "Demo control plane" })).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "Source" })).toBeNull();
+  });
+
   it("renders a demo link when demo URL is set", () => {
     const demoProject: Project = {
       ...baseProject,

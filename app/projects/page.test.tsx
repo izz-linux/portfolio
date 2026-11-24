@@ -5,7 +5,7 @@ import ProjectsPage from "@/app/projects/page";
 describe("ProjectsPage", () => {
   it("renders the page heading", () => {
     render(<ProjectsPage />);
-    expect(screen.getByRole("heading", { level: 1 })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("Izz Noland — Engineering Projects");
   });
 
   it("renders a 'Featured' section heading", () => {

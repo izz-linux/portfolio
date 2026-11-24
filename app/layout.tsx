@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,14 +14,17 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Izz Noland - Platform Engineering, DevOps, and SRE Expert",
-  description: "Interactive portfolio and resume of Izz Noland, a Platform Engineer and Site Reliability Expert with 20 years of experience managing large-scale cloud infrastructure, Kubernetes platforms, and Infrastructure as Code.",
+  metadataBase: new URL(SITE_URL),
+  alternates: { canonical: "./" },
+  title: "Platform Engineering, DevOps & SRE Portfolio | Izz Noland",
+  description: "Interactive resume and work history: 20 years of platform engineering, SRE, and DevOps across Kubernetes, Terraform, AWS, and GCP, including roles at Stord, theScore, and Samcart.",
   keywords: ["DevOps", "Site Reliability Engineering", "SRE", "Kubernetes", "AWS", "GCP", "Infrastructure as Code", "Terraform", "Cloud Infrastructure"],
   authors: [{ name: "Izz Noland" }],
   openGraph: {
-    title: "Izz Noland - Platform Engineering, DevOps, and SRE Expert",
+    title: "Platform Engineering, DevOps & SRE Portfolio | Izz Noland",
     description: "Interactive portfolio showcasing 20 years of DevOps, SRE, and Infrastructure experience",
     type: "website",
+    url: "./",
   },
 };
 
